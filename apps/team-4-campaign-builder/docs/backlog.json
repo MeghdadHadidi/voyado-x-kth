@@ -30,10 +30,8 @@
             "Card"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
-        {
-          "id": "S1.2",
           "title": "Set up data loading and type imports",
           "description": "Import campaign and template data from the local data folder, define any safe view-model helpers needed for the mismatched JSON shape, and connect shared Campaign and CampaignTemplate types so the page can render typed data.",
           "acceptanceCriteria": [
@@ -51,7 +49,7 @@
           ],
           "uiComponents": [],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S1.3",
@@ -69,10 +67,8 @@
           "dataSources": [],
           "uiComponents": [],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         }
-      ]
-    },
     {
       "id": "E2",
       "title": "Campaign List Experience",
