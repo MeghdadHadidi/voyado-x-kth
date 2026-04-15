@@ -31,20 +31,19 @@
             "Grid"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S1.2",
           "title": "Set up typed data loading and shared helpers",
-          "description": "Import segment and customer JSON with shared types and add helper utilities for formatting dates, customer names, and safe rule labels needed across the page.",
+          "description": "Import segment and customer JSON with shared types and add the initial formatting and matching helpers directly inside the demo page so the slice stays compact.",
           "acceptanceCriteria": [
             "Shared types from @voyado-kth/shared are used for segment and customer data.",
             "Seed data is loaded from the module data directory instead of hardcoded values.",
             "Reusable formatting helpers exist for dates, names, and display labels."
           ],
           "files": [
-            "src/pages/CustomerSegmentsPage.tsx",
-            "src/lib/segmentFormatters.ts"
+            "src/pages/CustomerSegmentsPage.tsx"
           ],
           "dataSources": [
             "data/segments.json",
@@ -52,7 +51,7 @@
           ],
           "uiComponents": [],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S1.3",
@@ -72,7 +71,7 @@
             "TeamPageLayout"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         }
       ]
     },
@@ -84,7 +83,7 @@
         {
           "id": "S2.1",
           "title": "Render the default segment list",
-          "description": "Display all seeded segments in a sorted vertical list with name, description preview, created date, and customer count badges.",
+          "description": "Display all seeded segments in a sorted vertical list with name, description preview, created date, and customer count badges, implemented directly in the demo page for speed.",
           "acceptanceCriteria": [
             "All segments from data/segments.json are shown newest first.",
             "Each card shows name, description preview, created date, and customer count.",
@@ -92,8 +91,7 @@
           ],
           "files": [
             "src/pages/CustomerSegmentsPage.tsx",
-            "src/components/SegmentList.tsx",
-            "src/components/SegmentList.module.css"
+            "src/pages/CustomerSegmentsPage.module.css"
           ],
           "dataSources": [
             "data/segments.json"
@@ -104,20 +102,19 @@
             "Button"
           ],
           "complexity": "M",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S2.2",
           "title": "Add empty state and create CTA",
-          "description": "Introduce the list header action and fallback state so the page still guides the user if no segments are available.",
+          "description": "Introduce the list header action and fallback state so the page still guides the user if no segments are available, using the same compact demo page implementation.",
           "acceptanceCriteria": [
             "A Create Segment action is clearly visible near the list header.",
             "An empty state appears when the segment array is empty.",
             "The empty state explains what to do next instead of leaving blank space."
           ],
           "files": [
-            "src/pages/CustomerSegmentsPage.tsx",
-            "src/components/SegmentList.tsx"
+            "src/pages/CustomerSegmentsPage.tsx"
           ],
           "dataSources": [
             "data/segments.json"
@@ -128,7 +125,7 @@
             "Alert"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         }
       ]
     },
@@ -140,7 +137,7 @@
         {
           "id": "S3.1",
           "title": "Implement segment selection and detail panel state",
-          "description": "Track the currently selected segment and render a detail-side panel within the same page workspace with back navigation.",
+          "description": "Track the currently selected segment and render a detail-side panel within the same page workspace, consolidated into the demo page for the workshop slice.",
           "acceptanceCriteria": [
             "Clicking a segment selects it and opens the detail area.",
             "The detail state can be cleared with a back or reset action.",
@@ -148,8 +145,7 @@
           ],
           "files": [
             "src/pages/CustomerSegmentsPage.tsx",
-            "src/components/SegmentDetail.tsx",
-            "src/components/SegmentDetail.module.css"
+            "src/pages/CustomerSegmentsPage.module.css"
           ],
           "dataSources": [
             "data/segments.json"
@@ -159,21 +155,20 @@
             "Button"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S3.2",
           "title": "Show rule summaries and matching customers for selected segments",
-          "description": "Render the selected segment's metadata, rules, customer count, and a customer table. Handle unsupported seeded operators gracefully in display labels.",
+          "description": "Render the selected segment's metadata, rules, customer count, and a customer table. Handle unsupported seeded operators gracefully in display labels inside the compact demo page implementation.",
           "acceptanceCriteria": [
             "The detail view shows segment title, description, rules, and count.",
             "A customer table displays name, email, tier, city, and total spend.",
             "Unsupported seeded operators are displayed safely without crashing the UI."
           ],
           "files": [
-            "src/components/SegmentDetail.tsx",
-            "src/lib/segmentMatching.ts",
-            "src/lib/segmentFormatters.ts"
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/pages/CustomerSegmentsPage.module.css"
           ],
           "dataSources": [
             "data/segments.json",
@@ -186,7 +181,7 @@
             "Alert"
           ],
           "complexity": "M",
-          "status": "review"
+          "status": "done"
         }
       ]
     },
