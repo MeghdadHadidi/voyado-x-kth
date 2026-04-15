@@ -1,2 +1,2 @@
 export { Index } from './pages/Index';
-export { ComingSoon } from './pages/ComingSoon';
+export { CustomerSegmentsPage } from './pages/CustomerSegmentsPage';

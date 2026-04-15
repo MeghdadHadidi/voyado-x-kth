@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-400);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-200);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-weak);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--ess-font-size-h3);
+  color: var(--ess-color-neutral-fg);
+}
+
+.ruleList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ess-spacing-200);
+}
+
+.ruleChip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--ess-border-radius-round);
+  background: var(--ess-color-blue-bg);
+  padding: var(--ess-spacing-200) var(--ess-spacing-300);
+  font-size: var(--ess-font-size-small);
+  line-height: 1.2;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.customerTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customerTable th,
+.customerTable td {
+  padding: var(--ess-spacing-300) var(--ess-spacing-200);
+  border-bottom: var(--ess-border-width-small) solid var(--ess-color-neutral-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.customerTable th {
+  font-size: var(--ess-font-size-small);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ess-color-neutral-fg-weak);
+}
+
+.customerTable td {
+  font-size: var(--ess-font-size-medium);
+}
+
+.customerTable tbody tr:last-child td {
+  border-bottom: 0;
+}

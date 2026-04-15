@@ -1,0 +1,394 @@
+.page {
+  --segment-shell-bg: var(--ess-color-neutral-bg);
+  --segment-shell-surface: rgba(255, 255, 255, 0.78);
+  --segment-shell-line: rgba(33, 33, 31, 0.12);
+  --segment-shell-copy: var(--ess-color-neutral-fg);
+  --segment-shell-muted: var(--ess-color-neutral-fg-weak);
+  --segment-shell-accent: var(--ess-color-success-bg);
+  --segment-shell-accent-soft: color-mix(in srgb, var(--ess-color-success-bg) 14%, white);
+  --segment-shell-signal: var(--ess-color-warning-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-500);
+  padding: var(--ess-spacing-500);
+  color: var(--segment-shell-copy);
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(67, 165, 132, 0.18), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(216, 182, 12, 0.16), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 247, 0.86));
+  pointer-events: none;
+}
+
+.hero,
+.sidebarStage,
+.canvasStage {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-500);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--ess-border-width-small) solid rgba(33, 33, 31, 0.08);
+  border-radius: var(--ess-border-radius-round);
+  background: rgba(255, 255, 255, 0.92);
+  padding: var(--ess-spacing-200) var(--ess-spacing-300);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-medium);
+  color: var(--segment-shell-muted);
+  box-shadow: var(--ess-shadow-small);
+}
+
+.heroGrid,
+.workspace {
+  position: relative;
+  z-index: 1;
+}
+
+.storyPanel,
+.teamPanel,
+.sidebarStage,
+.canvasStage {
+  border: var(--ess-border-width-small) solid var(--segment-shell-line);
+  border-radius: var(--ess-border-radius-large);
+  background: var(--segment-shell-surface);
+  box-shadow: var(--ess-shadow-medium);
+  backdrop-filter: blur(18px);
+}
+
+.storyPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-300);
+  padding: var(--ess-spacing-600);
+}
+
+.eyebrow,
+.panelLabel,
+.mockMeta,
+.canvasKicker {
+  margin: 0;
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--segment-shell-muted);
+}
+
+.storyTitle,
+.panelTitle,
+.canvasTitle,
+.teamName,
+.mockTitle {
+  margin: 0;
+  color: var(--segment-shell-copy);
+}
+
+.storyTitle {
+  max-width: 12ch;
+  font-size: clamp(2.2rem, 4.2vw, 4.4rem);
+  line-height: 0.96;
+}
+
+.storyText,
+.canvasText,
+.mockDescription,
+.memberRole {
+  margin: 0;
+  font-size: var(--ess-font-size-medium);
+  line-height: var(--ess-font-line-height-body);
+  color: var(--segment-shell-muted);
+}
+
+.badgeRow {
+  margin-top: var(--ess-spacing-200);
+}
+
+.inlineBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--ess-border-radius-round);
+  background: var(--segment-shell-accent-soft);
+  padding: var(--ess-spacing-200) var(--ess-spacing-300);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-medium);
+}
+
+.teamPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-400);
+  padding: var(--ess-spacing-500);
+}
+
+.teamName {
+  font-size: var(--ess-font-size-h2);
+  line-height: var(--ess-font-line-height-medium);
+}
+
+.memberList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-300);
+  margin: 0;
+  padding: 0;
+}
+
+.memberItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ess-spacing-300);
+  align-items: center;
+}
+
+.memberInitial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ess-size-900);
+  height: var(--ess-size-900);
+  border-radius: var(--ess-border-radius-round);
+  color: var(--ess-color-primary-text);
+  font-size: var(--ess-font-size-medium);
+  font-weight: var(--ess-font-weight-bold);
+  box-shadow: inset 0 0 0 var(--ess-border-width-small) rgba(255, 255, 255, 0.4);
+}
+
+.memberName {
+  margin: 0 0 var(--ess-spacing-100);
+  font-size: var(--ess-font-size-large);
+  font-weight: var(--ess-font-weight-medium);
+}
+
+.workspace {
+  align-items: start;
+}
+
+.sidebarStage,
+.canvasStage {
+  min-height: 34rem;
+  padding: var(--ess-spacing-500);
+}
+
+.sidebarStage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-500);
+}
+
+.panelHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-200);
+}
+
+.panelTitle {
+  font-size: var(--ess-font-size-h2);
+}
+
+.mockStack {
+  display: grid;
+  gap: var(--ess-spacing-300);
+}
+
+.segmentList {
+  display: grid;
+  gap: var(--ess-spacing-300);
+}
+
+.segmentButton {
+  appearance: none;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.segmentCard {
+  height: 100%;
+  border: var(--ess-border-width-small) solid transparent;
+  transition:
+    border-color var(--ess-duration-normal) var(--ess-ease-in-out),
+    transform var(--ess-duration-normal) var(--ess-ease-in-out);
+}
+
+.segmentButton:hover .segmentCard,
+.segmentButton:focus-visible .segmentCard {
+  border-color: rgba(67, 165, 132, 0.34);
+  transform: translateY(calc(var(--ess-size-25) * -1));
+}
+
+.segmentButton:focus-visible {
+  outline: none;
+}
+
+.segmentCardSelected {
+  border-color: rgba(67, 165, 132, 0.5);
+  box-shadow:
+    inset 0 0 0 var(--ess-border-width-small) rgba(67, 165, 132, 0.16),
+    var(--ess-shadow-medium);
+}
+
+.segmentCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ess-spacing-300);
+  margin-bottom: var(--ess-spacing-300);
+}
+
+.mockCard,
+.canvasCard,
+.previewCard {
+  border: var(--ess-border-width-small) solid rgba(33, 33, 31, 0.08);
+  border-radius: var(--ess-border-radius-medium);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 248, 247, 0.82));
+  padding: var(--ess-spacing-400);
+}
+
+.mockTitle,
+.canvasTitle {
+  font-size: var(--ess-font-size-h3);
+  line-height: var(--ess-font-line-height-medium);
+}
+
+.canvasGrid {
+  height: 100%;
+}
+
+.canvasStage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-400);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(242, 228, 235, 0.24)),
+    var(--segment-shell-surface);
+}
+
+.canvasCard {
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-300);
+  position: relative;
+  overflow: hidden;
+}
+
+.canvasCard::before {
+  content: '';
+  position: absolute;
+  inset: auto -10% 74% 30%;
+  height: 11rem;
+  border-radius: 100%;
+  background: radial-gradient(circle, rgba(67, 165, 132, 0.22), transparent 70%);
+}
+
+.previewCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ess-spacing-400);
+  background:
+    linear-gradient(120deg, rgba(254, 250, 230, 0.95), rgba(255, 255, 255, 0.9));
+}
+
+.ruleList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ess-spacing-200);
+}
+
+.ruleChip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--ess-border-radius-round);
+  background: rgba(71, 144, 255, 0.1);
+  padding: var(--ess-spacing-200) var(--ess-spacing-300);
+  font-size: var(--ess-font-size-small);
+  line-height: 1.2;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.customerTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customerTable th,
+.customerTable td {
+  padding: var(--ess-spacing-300) var(--ess-spacing-200);
+  border-bottom: var(--ess-border-width-small) solid rgba(33, 33, 31, 0.08);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.customerTable th {
+  font-size: var(--ess-font-size-small);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--segment-shell-muted);
+}
+
+.customerTable td {
+  font-size: var(--ess-font-size-medium);
+}
+
+.customerTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .workspace {
+    grid-template-columns: 1fr !important;
+  }
+
+  .storyTitle {
+    max-width: none;
+    font-size: clamp(2rem, 10vw, 3.6rem);
+  }
+
+  .sidebarStage,
+  .canvasStage {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: var(--ess-spacing-400);
+  }
+
+  .storyPanel,
+  .teamPanel,
+  .sidebarStage,
+  .canvasStage {
+    padding: var(--ess-spacing-400);
+  }
+
+  .previewCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

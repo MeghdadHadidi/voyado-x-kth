@@ -1,0 +1,299 @@
+{
+  "teamId": "team-5",
+  "createdAt": "2026-04-15T20:43:09.4297132+02:00",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder page with the rewards store shell, wire up typed data imports, and update exports so the shell renders the real module entry.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create the rewards store page scaffold",
+          "description": "Create the main Rewards Store page component with a basic layout that will replace the ComingSoon placeholder. Include top-level sections for header, store content, and tab content so later stories can plug into a stable page structure.",
+          "acceptanceCriteria": [
+            "A new page component renders inside TeamPageLayout instead of the ComingSoon placeholder",
+            "The page includes placeholder regions for points header, tabs, alerts, and catalog content",
+            "The page uses a CSS Module for layout and spacing tokens"
+          ],
+          "files": [
+            "src/pages/Index.tsx",
+            "src/pages/RewardsStorePage.tsx",
+            "src/pages/RewardsStorePage.module.css"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout"
+          ],
+          "complexity": "S",
+          "status": "done"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up typed data loading and local store state",
+          "description": "Import `member.json`, `rewards.json`, and `redemptions.json` into the page and type them with `Customer`, `Reward`, and `Redemption`. Initialize page state for current member balance, reward list, active store tab, active category tab, selected reward, dialog visibility, and in-session redemptions.",
+          "acceptanceCriteria": [
+            "The page imports all required JSON data files",
+            "Shared types from @voyado-kth/shared are used for member, rewards, and redemptions",
+            "React state is initialized for filters, dialogs, rewards, and redemption updates"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx"
+          ],
+          "dataSources": [
+            "data/member.json",
+            "data/rewards.json",
+            "data/redemptions.json"
+          ],
+          "uiComponents": [],
+          "complexity": "M",
+          "status": "done"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports to point to the new page",
+          "description": "Update the module exports so the shell loads the new Rewards Store page and remove reliance on the placeholder component from the main entry path.",
+          "acceptanceCriteria": [
+            "src/index.ts continues to export the route entry used by the shell",
+            "Index renders the new Rewards Store page",
+            "The module no longer depends on ComingSoon for the route output"
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "MVP Store Experience",
+      "description": "Build the core browse-and-redeem experience: points header, reward catalog, and category filtering.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Build the points balance hero header",
+          "description": "Create a reusable header component that greets the member by first name, shows the current tier using a Badge, and displays the current points balance prominently with formatted thousands separators.",
+          "acceptanceCriteria": [
+            "The member's first name is shown in the welcome copy",
+            "The tier is displayed using Badge styling",
+            "The points balance is prominent and updates from page state after redemptions",
+            "The header uses Essence tokens for a distinct visual treatment"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/PointsHeader.tsx",
+            "src/components/PointsHeader.module.css"
+          ],
+          "dataSources": [
+            "data/member.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S2.2",
+          "title": "Render the reward catalog grid with availability states",
+          "description": "Create the reward card component and catalog grid that show reward image, name, category, points cost, and redeem action. Keep unavailable and unaffordable rewards visible, but mute or disable them appropriately.",
+          "acceptanceCriteria": [
+            "All rewards from rewards.json render in a responsive grid",
+            "Each card shows image, title, category, and points cost",
+            "Sold-out rewards are visibly muted and marked with a sold-out label",
+            "Rewards the member cannot afford remain visible with a disabled redeem button"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/RewardsCatalog.tsx",
+            "src/components/RewardsCatalog.module.css",
+            "src/components/RewardCard.tsx",
+            "src/components/RewardCard.module.css"
+          ],
+          "dataSources": [
+            "data/rewards.json",
+            "data/member.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Chip",
+            "Badge",
+            "Button",
+            "Grid"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S2.3",
+          "title": "Add category tabs and filtered catalog state",
+          "description": "Implement category tabs for All, Discounts, Products, and Experiences. Hook tab selection into filtered reward rendering and show category counts in the tab labels.",
+          "acceptanceCriteria": [
+            "Tabs render All, Discounts, Products, and Experiences",
+            "Each tab label includes a category count",
+            "Changing tabs updates the catalog instantly without loading states",
+            "The active tab remains selected when other UI updates occur"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/CategoryTabs.tsx"
+          ],
+          "dataSources": [
+            "data/rewards.json"
+          ],
+          "uiComponents": [
+            "Tabs"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Redemption Flow",
+      "description": "Add the interactions that let members inspect rewards, confirm redemptions, and receive immediate feedback.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Create the redemption confirmation dialog",
+          "description": "Build a dialog that opens from reward cards, shows the reward name, current balance, points cost, and resulting balance, and offers confirm/cancel actions.",
+          "acceptanceCriteria": [
+            "Clicking Redeem opens a dialog with reward summary details",
+            "The dialog shows current balance and resulting balance after redemption",
+            "Confirm and cancel buttons are clearly presented",
+            "Cancel closes the dialog without updating state"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/RedemptionDialog.tsx"
+          ],
+          "dataSources": [
+            "data/member.json",
+            "data/rewards.json"
+          ],
+          "uiComponents": [
+            "Dialog",
+            "Card",
+            "Button"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.2",
+          "title": "Wire redemption state updates and success feedback",
+          "description": "Handle confirmed redemptions by deducting points, updating reward stock where relevant, prepending a new redemption record, and showing a success alert.",
+          "acceptanceCriteria": [
+            "Confirming redemption deducts the correct number of points from state",
+            "Stock-based rewards decrement after a successful redemption",
+            "A new redemption entry is added to in-session history data",
+            "A success alert appears after confirmation"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/RedemptionAlert.tsx"
+          ],
+          "dataSources": [
+            "data/member.json",
+            "data/rewards.json",
+            "data/redemptions.json"
+          ],
+          "uiComponents": [
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.3",
+          "title": "Add a simple reward detail modal",
+          "description": "Allow members to open a clean detail dialog from a reward card's non-primary area. Show full description, availability details, and a redeem action that uses the same disabled logic as the catalog.",
+          "acceptanceCriteria": [
+            "Clicking a reward card detail area opens a reward detail dialog",
+            "The dialog shows description, category, points cost, and availability details",
+            "Sold-out rewards show a clear warning state",
+            "Closing the dialog preserves the current store and category tabs"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/RewardDetailDialog.tsx"
+          ],
+          "dataSources": [
+            "data/rewards.json",
+            "data/member.json"
+          ],
+          "uiComponents": [
+            "Dialog",
+            "Card",
+            "Chip",
+            "Badge",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Redemption History and Polish",
+      "description": "Round out the module with history browsing, empty states, and final integration cleanup.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Add Store and My Redemptions top-level tabs",
+          "description": "Introduce a top-level tab switcher that lets the member move between the store experience and the redemption history view without losing state.",
+          "acceptanceCriteria": [
+            "The page has Store and My Redemptions tabs",
+            "The store remains the default initial tab",
+            "Switching tabs preserves existing store state such as selected category"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "Tabs"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S4.2",
+          "title": "Build the redemption history list and empty state",
+          "description": "Create the history view that merges preloaded and in-session redemptions, sorts them by newest first, formats the date, and shows an empty state when there are no items.",
+          "acceptanceCriteria": [
+            "The history view renders preloaded redemptions from redemptions.json",
+            "Newly confirmed redemptions appear at the top of the list",
+            "Each row shows reward name, points spent, and formatted date",
+            "An empty state is shown when the redemption list is empty"
+          ],
+          "files": [
+            "src/pages/RewardsStorePage.tsx",
+            "src/components/RedemptionHistory.tsx",
+            "src/components/RedemptionHistory.module.css"
+          ],
+          "dataSources": [
+            "data/redemptions.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    }
+  ]
+}
