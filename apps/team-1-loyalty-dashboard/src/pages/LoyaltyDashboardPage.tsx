@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { Card, PageHeader } from '@voyado-kth/ui';
 import teamData from '../../data/team.json';
 import { getDashboardSummary } from '../lib/dashboardData';
@@ -63,7 +64,12 @@ export function LoyaltyDashboardPage() {
           <ul className={styles.memberList}>
             {teamData.members.map(member => (
               <li key={member.id} className={styles.memberItem}>
-                <span className={styles.memberInitials}>{member.initials}</span>
+                <span
+                  className={styles.memberInitials}
+                  style={{ '--member-color': member.color } as CSSProperties}
+                >
+                  {member.initials}
+                </span>
                 <div className={styles.memberMeta}>
                   <p className={styles.memberName}>{member.name}</p>
                   <p className={styles.memberRole}>{member.role}</p>

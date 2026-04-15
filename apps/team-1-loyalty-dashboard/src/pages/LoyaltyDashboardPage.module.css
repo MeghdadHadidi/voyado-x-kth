@@ -142,10 +142,14 @@
   width: var(--ess-size-800);
   height: var(--ess-size-800);
   border-radius: var(--ess-border-radius-round);
-  background: var(--ess-color-primary-bg);
+  background: var(--member-color);
   color: var(--ess-color-primary-text);
+  box-shadow:
+    inset 0 0 0 var(--ess-border-width-medium) color-mix(in srgb, white 28%, transparent),
+    0 0 0 var(--ess-border-width-small) color-mix(in srgb, var(--member-color) 55%, white);
   font-size: var(--ess-font-size-medium);
   font-weight: var(--ess-font-weight-bold);
+  flex-shrink: 0;
 }
 
 .memberMeta {
@@ -205,14 +209,11 @@
   flex-direction: column;
   gap: var(--ess-spacing-300);
   min-height: 220px;
-}
-
-.placeholderCard:nth-of-type(2n) {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--ess-color-blue-bg) 52%, white) 0%, var(--ess-color-neutral-weak-bg) 100%);
-}
-
-.placeholderCard:nth-of-type(3n) {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--ess-color-sand-bg) 58%, white) 0%, var(--ess-color-neutral-weak-bg) 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ess-color-aqua-bg) 42%, white) 0%,
+    var(--ess-color-neutral-weak-bg) 100%
+  );
 }
 
 .cardLabel {

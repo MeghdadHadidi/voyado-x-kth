@@ -6,35 +6,35 @@
       "name": "Sandra K\u00e5hre",
       "role": "Developer",
       "initials": "SK",
-      "color": "#2d6e6d"
+      "color": "#e53935"
     },
     {
       "id": "member-2",
       "name": "Elinor Selinder",
       "role": "Developer",
       "initials": "ES",
-      "color": "#3a8584"
+      "color": "#fb8c00"
     },
     {
       "id": "member-3",
       "name": "Agnes Ng",
       "role": "Product Manager",
       "initials": "AN",
-      "color": "#1f5453"
+      "color": "#fdd835"
     },
     {
       "id": "member-4",
       "name": "Lovisa Cond\u00e9",
       "role": "UX Designer",
       "initials": "LC",
-      "color": "#48a09f"
+      "color": "#43a047"
     },
     {
       "id": "member-5",
       "name": "Noor Fauad Raheem",
       "role": "QA Engineer",
       "initials": "NR",
-      "color": "#165b5a"
+      "color": "#1e88e5"
     }
   ]
 }
