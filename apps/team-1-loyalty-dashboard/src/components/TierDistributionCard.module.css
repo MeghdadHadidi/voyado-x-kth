@@ -1,0 +1,100 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-400);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ess-spacing-400);
+  align-items: flex-start;
+}
+
+.sectionLabel {
+  margin: 0 0 var(--ess-spacing-100);
+  color: var(--ess-color-neutral-fg-weak);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-strong);
+  font-size: var(--ess-font-size-h3);
+  font-weight: var(--ess-font-weight-bold);
+  line-height: var(--ess-font-line-height-heading);
+}
+
+.totalBadge {
+  align-self: center;
+  font-size: var(--ess-font-size-small);
+}
+
+.tierList {
+  display: grid;
+  gap: var(--ess-spacing-400);
+}
+
+.tierRow {
+  display: grid;
+  gap: var(--ess-spacing-300);
+}
+
+.tierMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ess-spacing-300);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tierLabelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--ess-spacing-300);
+  min-width: 0;
+}
+
+.tierName {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-strong);
+  font-size: var(--ess-font-size-medium);
+  font-weight: var(--ess-font-weight-bold);
+}
+
+.tierCount {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-weak);
+  font-size: var(--ess-font-size-small);
+}
+
+.tierBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barTrack {
+  position: relative;
+  width: 100%;
+  min-height: var(--ess-size-200);
+  border-radius: var(--ess-border-radius-large);
+  background: var(--ess-color-neutral-weak-bg);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: var(--ess-border-radius-large);
+  transition: width var(--ess-duration-normal) ease-in-out;
+}
+
+@media (min-width: 720px) {
+  .tierRow {
+    gap: var(--ess-spacing-200);
+  }
+}

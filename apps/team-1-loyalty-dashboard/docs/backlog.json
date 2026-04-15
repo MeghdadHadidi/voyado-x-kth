@@ -133,7 +133,7 @@
           "dataSources": ["data/tiers.json"],
           "uiComponents": ["Card", "Badge"],
           "complexity": "M",
-          "status": "backlog"
+          "status": "review"
         }
       ]
     },

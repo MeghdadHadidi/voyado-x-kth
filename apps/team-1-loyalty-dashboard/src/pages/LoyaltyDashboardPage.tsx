@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Card, Grid, KpiCard, PageHeader } from "@voyado-kth/ui";
 import teamData from "../../data/team.json";
 import { getDashboardKpis, getDashboardSummary } from "../lib/dashboardData";
+import { TierDistributionCard } from "../components/TierDistributionCard";
 import styles from "./LoyaltyDashboardPage.module.css";
 
 const sectionPlaceholders = [
@@ -121,6 +122,10 @@ export function LoyaltyDashboardPage() {
             ))}
           </ul>
         </Card>
+      </section>
+
+      <section className={styles.distributionSection}>
+        <TierDistributionCard />
       </section>
 
       <section

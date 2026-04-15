@@ -215,6 +215,11 @@
   font-size: var(--ess-font-size-small);
 }
 
+.distributionSection {
+  display: flex;
+  width: 100%;
+}
+
 .sectionGrid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
