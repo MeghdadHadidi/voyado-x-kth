@@ -1,0 +1,48 @@
+{
+  "teamId": "team-6",
+  "teamName": "Team 6",
+  "teamNickname": "CIA",
+  "members": [
+    {
+      "name": "Mattias Orahem",
+      "email": "",
+      "github": "",
+      "role": "Developer",
+      "initials": "MO",
+      "avatarColor": "#7b61ff"
+    },
+    {
+      "name": "Otilia Irell",
+      "email": "",
+      "github": "",
+      "role": "Developer",
+      "initials": "OI",
+      "avatarColor": "#8d77ff"
+    },
+    {
+      "name": "Yuriy Petrov",
+      "email": "",
+      "github": "",
+      "role": "UX Designer",
+      "initials": "YP",
+      "avatarColor": "#6a4df0"
+    },
+    {
+      "name": "JW Velasquez",
+      "email": "",
+      "github": "",
+      "role": "QA Engineer",
+      "initials": "JV",
+      "avatarColor": "#a08fff"
+    },
+    {
+      "name": "Shunkang Jia",
+      "email": "",
+      "github": "",
+      "role": "Product Manager",
+      "initials": "SJ",
+      "avatarColor": "#5a3ad9"
+    }
+  ],
+  "onboardedAt": "2026-04-15T20:42:02+02:00"
+}

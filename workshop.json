@@ -218,18 +218,59 @@
     {
       "id": "team-6",
       "name": "Team 6",
-      "nickname": "",
+      "nickname": "CIA",
       "module": {
         "route": "/analytics",
         "package": "@voyado-kth/team-6-analytics-overview",
         "title": "Analytics Overview",
         "description": "KPI charts, engagement metrics, and reporting"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Mattias Orahem",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "MO",
+          "avatarColor": "#7b61ff"
+        },
+        {
+          "name": "Otilia Irell",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "OI",
+          "avatarColor": "#8d77ff"
+        },
+        {
+          "name": "Yuriy Petrov",
+          "email": "",
+          "github": "",
+          "role": "UX Designer",
+          "initials": "YP",
+          "avatarColor": "#6a4df0"
+        },
+        {
+          "name": "JW Velasquez",
+          "email": "",
+          "github": "",
+          "role": "QA Engineer",
+          "initials": "JV",
+          "avatarColor": "#a08fff"
+        },
+        {
+          "name": "Shunkang Jia",
+          "email": "",
+          "github": "",
+          "role": "Product Manager",
+          "initials": "SJ",
+          "avatarColor": "#5a3ad9"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "requirements",
         "steps": {
-          "onboarding": "pending",
+          "onboarding": "completed",
           "requirements": "pending",
           "breakdown": "pending",
           "implementation": "pending",
@@ -242,7 +283,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T20:42:02+02:00"
       }
     }
   ]
