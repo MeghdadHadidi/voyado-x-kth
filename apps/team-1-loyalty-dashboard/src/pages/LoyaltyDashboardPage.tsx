@@ -39,7 +39,7 @@ export function LoyaltyDashboardPage() {
     <main className={styles.page}>
       <section
         className={styles.heroSection}
-        aria-labelledby="dashboard-shell-heading"
+        aria-label="Loyalty dashboard overview"
       >
         <Card className={styles.heroCard}>
           <div className={styles.heroAccent} aria-hidden="true" />
