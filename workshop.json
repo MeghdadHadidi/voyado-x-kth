@@ -75,14 +75,55 @@
         "title": "Loyalty Dashboard",
         "description": "Member overview, points balance, tier distribution, and enrollment trends"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Sandra K\u00e5hre",
+          "email": "sandra.kahre@gmail.com",
+          "github": "skahre",
+          "role": "Developer",
+          "initials": "SK",
+          "avatarColor": "#2d6e6d"
+        },
+        {
+          "name": "Elinor Selinder",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "ES",
+          "avatarColor": "#3a8584"
+        },
+        {
+          "name": "Agnes Ng",
+          "email": "",
+          "github": "",
+          "role": "Product Manager",
+          "initials": "AN",
+          "avatarColor": "#1f5453"
+        },
+        {
+          "name": "Lovisa Cond\u00e9",
+          "email": "",
+          "github": "",
+          "role": "UX Designer",
+          "initials": "LC",
+          "avatarColor": "#48a09f"
+        },
+        {
+          "name": "Noor Fauad Raheem",
+          "email": "",
+          "github": "",
+          "role": "QA Engineer",
+          "initials": "NR",
+          "avatarColor": "#165b5a"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "implementation",
         "steps": {
-          "onboarding": "pending",
-          "requirements": "pending",
-          "breakdown": "pending",
-          "implementation": "pending",
+          "onboarding": "completed",
+          "requirements": "completed",
+          "breakdown": "completed",
+          "implementation": "in-progress",
           "pull-request": "pending",
           "review": "pending",
           "merge": "pending",
@@ -92,7 +133,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T19:10:06.395Z"
       }
     },
     {
