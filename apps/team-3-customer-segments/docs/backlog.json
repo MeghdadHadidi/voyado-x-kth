@@ -31,7 +31,7 @@
             "Grid"
           ],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         },
         {
           "id": "S1.2",
@@ -52,7 +52,7 @@
           ],
           "uiComponents": [],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         },
         {
           "id": "S1.3",
@@ -72,7 +72,7 @@
             "TeamPageLayout"
           ],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         }
       ]
     },
@@ -104,7 +104,7 @@
             "Button"
           ],
           "complexity": "M",
-          "status": "backlog"
+          "status": "review"
         },
         {
           "id": "S2.2",
@@ -128,7 +128,7 @@
             "Alert"
           ],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         }
       ]
     },
@@ -159,7 +159,7 @@
             "Button"
           ],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         },
         {
           "id": "S3.2",
@@ -186,7 +186,7 @@
             "Alert"
           ],
           "complexity": "M",
-          "status": "backlog"
+          "status": "review"
         }
       ]
     },
