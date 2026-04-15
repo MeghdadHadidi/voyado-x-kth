@@ -1,0 +1,308 @@
+{
+  "teamId": "team-3",
+  "createdAt": "2026-04-15T18:40:49Z",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder module with a typed page shell wired to real segment and customer data.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create the customer segments page shell",
+          "description": "Build the main page component that renders inside TeamPageLayout and establishes the single-page workspace with room for a list column and a detail or builder area.",
+          "acceptanceCriteria": [
+            "A new page component replaces the generic ComingSoon experience for team-3.",
+            "The page includes a top-level header and a desktop-first two-area layout.",
+            "The shell renders safely with existing static data imports and no interactive logic yet."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/pages/CustomerSegmentsPage.module.css",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [
+            "data/team.json"
+          ],
+          "uiComponents": [
+            "PageHeader",
+            "Flex",
+            "Grid"
+          ],
+          "complexity": "S",
+          "status": "done"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up typed data loading and shared helpers",
+          "description": "Import segment and customer JSON with shared types and add the initial formatting and matching helpers directly inside the demo page so the slice stays compact.",
+          "acceptanceCriteria": [
+            "Shared types from @voyado-kth/shared are used for segment and customer data.",
+            "Seed data is loaded from the module data directory instead of hardcoded values.",
+            "Reusable formatting helpers exist for dates, names, and display labels."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx"
+          ],
+          "dataSources": [
+            "data/segments.json",
+            "data/customers.json"
+          ],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "done"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports to use the new page",
+          "description": "Wire the new page into the team module entry points so the shell route renders the customer segments experience instead of the placeholder component.",
+          "acceptanceCriteria": [
+            "Index renders the new customer segments page inside TeamPageLayout.",
+            "src/index.ts exports the page entry expected by the shell.",
+            "The old ComingSoon component is no longer the primary route output."
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout"
+          ],
+          "complexity": "S",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "Segment List Workspace",
+      "description": "Deliver the default list experience so marketers can browse existing segments and navigate into deeper states.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Render the default segment list",
+          "description": "Display all seeded segments in a sorted vertical list with name, description preview, created date, and customer count badges, implemented directly in the demo page for speed.",
+          "acceptanceCriteria": [
+            "All segments from data/segments.json are shown newest first.",
+            "Each card shows name, description preview, created date, and customer count.",
+            "The list uses shared UI components and matches the page shell layout."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/pages/CustomerSegmentsPage.module.css"
+          ],
+          "dataSources": [
+            "data/segments.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Button"
+          ],
+          "complexity": "M",
+          "status": "done"
+        },
+        {
+          "id": "S2.2",
+          "title": "Add empty state and create CTA",
+          "description": "Introduce the list header action and fallback state so the page still guides the user if no segments are available, using the same compact demo page implementation.",
+          "acceptanceCriteria": [
+            "A Create Segment action is clearly visible near the list header.",
+            "An empty state appears when the segment array is empty.",
+            "The empty state explains what to do next instead of leaving blank space."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx"
+          ],
+          "dataSources": [
+            "data/segments.json"
+          ],
+          "uiComponents": [
+            "PageHeader",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "S",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Read-Only Segment Detail",
+      "description": "Enable selection of an existing segment and show who belongs to it in a readable detail panel.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Implement segment selection and detail panel state",
+          "description": "Track the currently selected segment and render a detail-side panel within the same page workspace, consolidated into the demo page for the workshop slice.",
+          "acceptanceCriteria": [
+            "Clicking a segment selects it and opens the detail area.",
+            "The detail state can be cleared with a back or reset action.",
+            "The list and detail areas coexist within the single-page layout."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/pages/CustomerSegmentsPage.module.css"
+          ],
+          "dataSources": [
+            "data/segments.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Button"
+          ],
+          "complexity": "S",
+          "status": "done"
+        },
+        {
+          "id": "S3.2",
+          "title": "Show rule summaries and matching customers for selected segments",
+          "description": "Render the selected segment's metadata, rules, customer count, and a customer table. Handle unsupported seeded operators gracefully in display labels inside the compact demo page implementation.",
+          "acceptanceCriteria": [
+            "The detail view shows segment title, description, rules, and count.",
+            "A customer table displays name, email, tier, city, and total spend.",
+            "Unsupported seeded operators are displayed safely without crashing the UI."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/pages/CustomerSegmentsPage.module.css"
+          ],
+          "dataSources": [
+            "data/segments.json",
+            "data/customers.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Chip",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Segment Creation Flow",
+      "description": "Add the input flow for creating a new segment inside the existing workspace.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Build the create segment form with validation",
+          "description": "Create the form state for segment name and description, enforce the minimum name length, and provide cancel or next actions.",
+          "acceptanceCriteria": [
+            "The form supports segment name and description inputs.",
+            "Name validation blocks progress until at least 3 characters are entered.",
+            "Cancel returns the user to the default list state without creating a draft."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/components/SegmentCreateForm.tsx",
+            "src/components/SegmentCreateForm.module.css"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "Card",
+            "Input",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "done"
+        },
+        {
+          "id": "S4.2",
+          "title": "Create the rule builder rows and BRD-scoped field logic",
+          "description": "Add editable rule rows with field, operator, and value controls. Limit authoring to the BRD-supported fields and operators, and show AND relationships between rows.",
+          "acceptanceCriteria": [
+            "Users can add and remove rule rows in the builder.",
+            "Operator and value inputs adapt to the selected field.",
+            "Only BRD-scoped operators are available for new rules."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/components/RuleBuilder.tsx",
+            "src/components/RuleBuilder.module.css",
+            "src/lib/ruleBuilderOptions.ts"
+          ],
+          "dataSources": [
+            "data/customers.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Select",
+            "Input",
+            "Button",
+            "Chip",
+            "Alert"
+          ],
+          "complexity": "L",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "title": "Preview and Local Draft Results",
+      "description": "Close the loop by evaluating rule matches and optionally surfacing a newly created segment in the local list.",
+      "stories": [
+        {
+          "id": "S5.1",
+          "title": "Evaluate builder rules and show preview results",
+          "description": "Run the current rule set against customers.json when the user clicks Preview and show total match count, first five customers, and strong no-match feedback.",
+          "acceptanceCriteria": [
+            "Preview runs only on explicit user action.",
+            "The result shows a total count and up to five matching customers.",
+            "A no-match state tells the user to broaden their criteria."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/components/SegmentPreview.tsx",
+            "src/components/SegmentPreview.module.css",
+            "src/lib/segmentMatching.ts"
+          ],
+          "dataSources": [
+            "data/customers.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "done"
+        },
+        {
+          "id": "S5.2",
+          "title": "Insert created segments into local session state",
+          "description": "After a valid preview or save action, add the newly created segment to local page state so it appears in the list with its computed customer count for the current session.",
+          "acceptanceCriteria": [
+            "A created segment appears in the list without editing JSON files.",
+            "The inserted segment carries its computed customer count and rule summary.",
+            "Seeded segments and session-created segments can coexist in the same list."
+          ],
+          "files": [
+            "src/pages/CustomerSegmentsPage.tsx",
+            "src/lib/segmentFactory.ts"
+          ],
+          "dataSources": [
+            "data/segments.json",
+            "data/customers.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Button"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    }
+  ]
+}

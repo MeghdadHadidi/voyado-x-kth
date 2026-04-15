@@ -128,21 +128,62 @@
     {
       "id": "team-3",
       "name": "Team 3",
-      "nickname": "",
+      "nickname": "mer burk",
       "module": {
         "route": "/segments",
         "package": "@voyado-kth/team-3-customer-segments",
         "title": "Customer Segments",
         "description": "Segment builder and audience targeting rules"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Isabelle boss",
+          "email": "",
+          "github": "",
+          "role": "Developer 1",
+          "initials": "IB",
+          "avatarColor": "#43a584"
+        },
+        {
+          "name": "Josefin bouss",
+          "email": "",
+          "github": "",
+          "role": "Developer 2",
+          "initials": "JB",
+          "avatarColor": "#56b896"
+        },
+        {
+          "name": "Wilda bozz",
+          "email": "",
+          "github": "",
+          "role": "Product Designer",
+          "initials": "WB",
+          "avatarColor": "#339574"
+        },
+        {
+          "name": "Vilma boesz",
+          "email": "",
+          "github": "",
+          "role": "UX Designer",
+          "initials": "VB",
+          "avatarColor": "#68cba8"
+        },
+        {
+          "name": "Linnea buoss",
+          "email": "",
+          "github": "",
+          "role": "QA Engineer",
+          "initials": "LB",
+          "avatarColor": "#2a8568"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "implementation",
         "steps": {
-          "onboarding": "pending",
-          "requirements": "pending",
-          "breakdown": "pending",
-          "implementation": "pending",
+          "onboarding": "completed",
+          "requirements": "completed",
+          "breakdown": "completed",
+          "implementation": "in-progress",
           "pull-request": "pending",
           "review": "pending",
           "merge": "pending",
@@ -152,7 +193,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T19:11:55Z"
       }
     },
     {
