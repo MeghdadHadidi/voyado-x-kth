@@ -1,0 +1,282 @@
+{
+  "teamId": "team-1",
+  "createdAt": "2026-04-15T20:32:18.9570428+02:00",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder module with the dashboard page shell, shared imports, and source structure needed for feature work.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create the loyalty dashboard page shell",
+          "description": "Create a `LoyaltyDashboardPage` page component and page CSS module that replace the current empty-state placeholder with a desktop-first dashboard layout scaffold inside `TeamPageLayout`.",
+          "acceptanceCriteria": [
+            "A new page component renders a dashboard heading and section placeholders inside TeamPageLayout.",
+            "The page uses CSS Modules for the main layout and spacing.",
+            "The current ComingSoon-only experience is no longer the main rendered content."
+          ],
+          "files": [
+            "src/pages/Index.tsx",
+            "src/pages/LoyaltyDashboardPage.tsx",
+            "src/pages/LoyaltyDashboardPage.module.css"
+          ],
+          "dataSources": [
+            "data/team.json"
+          ],
+          "uiComponents": [
+            "TeamPageLayout",
+            "PageHeader",
+            "Card"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up typed data imports and dashboard helpers",
+          "description": "Create dashboard helper utilities and local typed view-model helpers for KPI, activity, and formatting needs using shared types and imported JSON data from the module data folder.",
+          "acceptanceCriteria": [
+            "Dashboard code imports shared types from @voyado-kth/shared.",
+            "A helper module exists for formatting and derived dashboard calculations.",
+            "Data imports for members, tiers, activity, and enrollment stats are wired into the page layer without hardcoded values."
+          ],
+          "files": [
+            "src/pages/LoyaltyDashboardPage.tsx",
+            "src/lib/dashboardData.ts",
+            "src/lib/dashboardFormatters.ts"
+          ],
+          "dataSources": [
+            "data/members.json",
+            "data/tiers.json",
+            "data/activity.json",
+            "data/enrollment-stats.json"
+          ],
+          "uiComponents": [],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports to replace ComingSoon",
+          "description": "Update the module entrypoint so the shell exports the real dashboard page instead of relying on the standalone ComingSoon component as the main experience.",
+          "acceptanceCriteria": [
+            "src/index.ts exports the dashboard page entry used by the shell.",
+            "The module route resolves to the dashboard page through Index.tsx.",
+            "Unused placeholder-only exports are removed or no longer relied on for the route."
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "KPI Overview",
+      "description": "Implement the dashboard's top-level KPI summary so program managers can understand loyalty performance immediately.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Compute loyalty KPI values from static data",
+          "description": "Derive the four KPI values and simple trend metadata from the available members and enrollment datasets, including fallback logic where the source data does not directly provide prebuilt KPI objects.",
+          "acceptanceCriteria": [
+            "Helpers return values for total members, active members, average points balance, and total points issued.",
+            "Trend values are available in a shape that can be passed into KpiCard components.",
+            "Numeric outputs are formatted consistently for dashboard display."
+          ],
+          "files": [
+            "src/lib/dashboardData.ts",
+            "src/lib/dashboardFormatters.ts"
+          ],
+          "dataSources": [
+            "data/members.json",
+            "data/enrollment-stats.json"
+          ],
+          "uiComponents": [
+            "KpiCard"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S2.2",
+          "title": "Render the KPI summary row",
+          "description": "Build the visible KPI row at the top of the dashboard using four KpiCard components and responsive layout styling that supports desktop and a narrower two-column fallback.",
+          "acceptanceCriteria": [
+            "Four KpiCard components render in the dashboard header section.",
+            "Positive and negative trends use Essence success and danger styles.",
+            "The KPI row visually adapts to narrower widths without overlapping."
+          ],
+          "files": [
+            "src/pages/LoyaltyDashboardPage.tsx",
+            "src/pages/LoyaltyDashboardPage.module.css"
+          ],
+          "dataSources": [
+            "data/members.json",
+            "data/enrollment-stats.json"
+          ],
+          "uiComponents": [
+            "KpiCard",
+            "Grid"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Member Distribution",
+      "description": "Visualize how the loyalty base is distributed across tiers using clear, color-coded bars and summary information.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Build the tier distribution card",
+          "description": "Create a tier distribution section that shows all loyalty tiers, total members, percentages, and bar widths based on tier counts and colors from the JSON source.",
+          "acceptanceCriteria": [
+            "All four tiers render with name, count, and percentage.",
+            "Each tier includes a horizontal bar styled from the tier color field.",
+            "The section is wrapped in a Card and includes a visible total-members summary."
+          ],
+          "files": [
+            "src/components/TierDistributionCard.tsx",
+            "src/components/TierDistributionCard.module.css",
+            "src/pages/LoyaltyDashboardPage.tsx"
+          ],
+          "dataSources": [
+            "data/tiers.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Recent Activity",
+      "description": "Add an operational activity feed that highlights the most important recent loyalty events for fast review.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Prepare filtered activity feed data",
+          "description": "Create activity-feed helpers that sort items newest-first, limit the list to 10 items, exclude enrollment events, and map event types to UI labels and display styles.",
+          "acceptanceCriteria": [
+            "The helper returns at most 10 activities in reverse chronological order.",
+            "Enrollment events are excluded from the MVP feed.",
+            "Event labels and point-display values are ready for rendering."
+          ],
+          "files": [
+            "src/lib/dashboardData.ts",
+            "src/lib/dashboardFormatters.ts"
+          ],
+          "dataSources": [
+            "data/activity.json"
+          ],
+          "uiComponents": [
+            "Badge"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S4.2",
+          "title": "Render the recent activity feed card",
+          "description": "Build the recent activity list UI inside a Card using badges, simple timestamp formatting, and clear spacing so the newest loyalty events are easy to scan.",
+          "acceptanceCriteria": [
+            "The activity feed renders member name, event label, timestamp, and points when relevant.",
+            "Event badges visually distinguish earned, redeemed, and tier-upgrade events.",
+            "The list is readable and consistent across the 10 displayed items."
+          ],
+          "files": [
+            "src/components/RecentActivityCard.tsx",
+            "src/components/RecentActivityCard.module.css",
+            "src/pages/LoyaltyDashboardPage.tsx"
+          ],
+          "dataSources": [
+            "data/activity.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E5",
+      "title": "Enrollment Trend",
+      "description": "Show monthly enrollment momentum using a lightweight chart treatment that fits the dashboard aesthetic.",
+      "stories": [
+        {
+          "id": "S5.1",
+          "title": "Build the enrollment trend card",
+          "description": "Create a card that renders the 12 monthly enrollment data points in chronological order as a CSS-only bar chart with labels, values, and a highlighted latest month.",
+          "acceptanceCriteria": [
+            "All 12 monthly data points are displayed in chronological order.",
+            "Bars scale relative to the maximum value in the dataset and show exact values via title attributes.",
+            "The latest month is visually highlighted from the rest of the chart."
+          ],
+          "files": [
+            "src/components/EnrollmentTrendCard.tsx",
+            "src/components/EnrollmentTrendCard.module.css",
+            "src/pages/LoyaltyDashboardPage.tsx"
+          ],
+          "dataSources": [
+            "data/enrollment-stats.json"
+          ],
+          "uiComponents": [
+            "Card"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E6",
+      "title": "Top Members Leaderboard",
+      "description": "Add the optional leaderboard experience for ranking members by points balance after the MVP is complete.",
+      "stories": [
+        {
+          "id": "S6.1",
+          "title": "Build the top members table with sorting",
+          "description": "Create a leaderboard card that shows the top 10 members by points balance and supports simple ascending and descending sorting by relevant columns.",
+          "acceptanceCriteria": [
+            "The table initially shows the top 10 members by points balance descending.",
+            "Users can sort by at least name, tier, points balance, and last activity date.",
+            "The current sort direction is visible in the table header."
+          ],
+          "files": [
+            "src/components/TopMembersCard.tsx",
+            "src/components/TopMembersCard.module.css",
+            "src/pages/LoyaltyDashboardPage.tsx"
+          ],
+          "dataSources": [
+            "data/members.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "L",
+          "status": "backlog"
+        }
+      ]
+    }
+  ]
+}
