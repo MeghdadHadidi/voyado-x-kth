@@ -123,7 +123,7 @@
           "onboarding": "completed",
           "requirements": "completed",
           "breakdown": "completed",
-          "implementation": "pending",
+          "implementation": "in-progress",
           "pull-request": "pending",
           "review": "pending",
           "merge": "pending",
@@ -133,7 +133,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": "2026-04-15T20:32:18.9570428+02:00"
+        "lastActivity": "2026-04-15T20:35:01.7078554+02:00"
       }
     },
     {
