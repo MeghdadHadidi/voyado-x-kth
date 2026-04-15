@@ -1,0 +1,48 @@
+{
+  "teamId": "team-5",
+  "teamName": "Team 5",
+  "teamNickname": "Big 5",
+  "members": [
+    {
+      "name": "Filippa Ciuk Olsson",
+      "email": "",
+      "github": "",
+      "role": "Developer",
+      "initials": "FO",
+      "avatarColor": "#e8725a"
+    },
+    {
+      "name": "Vanessa Baatarsukh",
+      "email": "",
+      "github": "",
+      "role": "Developer",
+      "initials": "VB",
+      "avatarColor": "#ed886e"
+    },
+    {
+      "name": "Ebba Adolphson",
+      "email": "",
+      "github": "",
+      "role": "UX Designer",
+      "initials": "EA",
+      "avatarColor": "#e35c42"
+    },
+    {
+      "name": "Viggo Halvarsson Skoog",
+      "email": "",
+      "github": "",
+      "role": "Product Manager",
+      "initials": "VS",
+      "avatarColor": "#f09e88"
+    },
+    {
+      "name": "Henning Lundberg",
+      "email": "",
+      "github": "",
+      "role": "QA Engineer",
+      "initials": "HL",
+      "avatarColor": "#d94a30"
+    }
+  ],
+  "onboardedAt": "2026-04-15T20:35:52.1551608+02:00"
+}
