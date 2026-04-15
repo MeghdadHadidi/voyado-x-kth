@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@voyado-kth/shared": "workspace:*",
-    "@voyado-kth/ui": "workspace:*"
+    "@voyado-kth/ui": "workspace:*",
+    "recharts": "^2.12.7"
   },
   "peerDependencies": {
     "react": "^19.0.0",

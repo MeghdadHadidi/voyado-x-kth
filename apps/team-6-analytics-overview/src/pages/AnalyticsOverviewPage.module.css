@@ -1,13 +1,16 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-600);
-  padding: var(--ess-spacing-700);
+  min-height: 100%;
   background:
-    radial-gradient(circle at 85% -10%, color-mix(in srgb, var(--ess-color-coral) 18%, transparent), transparent 34%),
-    radial-gradient(circle at -10% 110%, color-mix(in srgb, var(--ess-color-purple) 14%, transparent), transparent 36%),
+    radial-gradient(900px 500px at 85% -10%, rgba(234, 106, 78, 0.08), transparent 60%),
+    radial-gradient(700px 420px at -10% 110%, rgba(107, 63, 122, 0.05), transparent 60%),
     #f5f2ec;
-  font-family: var(--ess-font-family);
+  color: #0e1413;
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
 }
 
 .header {
@@ -15,139 +18,167 @@
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--ess-spacing-500);
-  padding: var(--ess-spacing-600);
-  border: var(--ess-border-width-small) solid #e7e1d8;
-  border-radius: calc(var(--ess-border-radius-large) + var(--ess-spacing-100));
-  background: rgba(255, 252, 247, 0.9);
-  box-shadow: 0 12px 30px rgba(33, 33, 31, 0.05);
+  gap: 1.5rem;
 }
 
-.headerCopy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-300);
-  min-width: 0;
-}
-
-.kicker,
-.sectionEyebrow,
-.cardEyebrow,
-.panelKicker,
-.metaLabel,
-.kpiLabel,
-.campaignChannel {
-  margin: 0;
-  font-size: var(--ess-font-size-small);
-  font-weight: var(--ess-font-weight-semibold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.kicker {
+.headerPill {
   display: inline-flex;
   align-items: center;
-  width: fit-content;
-  padding: var(--ess-spacing-200) var(--ess-spacing-300);
-  border-radius: var(--ess-border-radius-round);
-  background: color-mix(in srgb, var(--ess-color-coral) 14%, white);
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: rgba(232, 114, 90, 0.12);
   color: #8f2d15;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-.heroTitle {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.8rem, 6vw, 4.4rem);
-  font-weight: var(--ess-font-weight-bold);
-  line-height: 0.98;
-  letter-spacing: -0.05em;
+.headerDot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #ea6a4e;
+}
+
+.title {
+  margin: 1rem 0 0;
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+  font-weight: 700;
   color: #111716;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  font-family: Georgia, "Times New Roman", serif;
 }
 
-.heroAccent {
-  color: #1f5a54;
+.title span {
+  color: #1b3a32;
 }
 
-.heroDescription {
-  margin: 0;
-  max-width: 44rem;
-  font-size: var(--ess-font-size-large);
-  line-height: var(--ess-font-line-height-body);
-  color: #5b6561;
+.subtitle {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  color: #5f6865;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .rangeToggle {
   display: inline-flex;
-  align-items: center;
-  gap: var(--ess-spacing-100);
-  padding: var(--ess-spacing-100);
-  border: var(--ess-border-width-small) solid var(--ess-color-neutral-border);
-  border-radius: var(--ess-border-radius-round);
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: var(--ess-shadow-small);
+  gap: 0.25rem;
+  padding: 0.35rem;
+  border: 1px solid #e2ddd4;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 
 .rangeButton,
 .rangeActive {
   border: 0;
-  border-radius: var(--ess-border-radius-round);
-  padding: var(--ess-spacing-200) var(--ess-spacing-400);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
   font: inherit;
-  font-size: var(--ess-font-size-small);
-  font-weight: var(--ess-font-weight-semibold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: default;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: transparent;
 }
 
 .rangeButton {
-  background: transparent;
-  color: #62706c;
+  color: #596460;
 }
 
 .rangeActive {
-  background: var(--ess-color-primary-bg);
-  color: var(--ess-color-primary-text);
+  background: #1b3a32;
+  color: #fff;
 }
 
 .kpiGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--ess-spacing-400);
+  gap: 1.25rem;
+  margin-top: 3rem;
 }
 
-.kpiCard {
+.kpiCard,
+.kpiCardOpen {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--ess-spacing-300);
-  border-color: #e7e1d8;
-  border-radius: var(--ess-border-radius-large);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 10px 24px rgba(33, 33, 31, 0.05);
+  gap: 1.25rem;
+  width: 100%;
+  border: 1px solid #e5e0d7;
+  border-radius: 1.1rem;
+  padding: 1.5rem;
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
 }
 
-.kpiTopRow,
-.kpiValueRow {
+.kpiCardOpen {
+  border-color: transparent;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+.kpiAccent {
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  top: 0;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: var(--card-accent);
+}
+
+.kpiHeader,
+.kpiFooter,
+.kpiHeading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--ess-spacing-300);
+  gap: 0.75rem;
+}
+
+.kpiHeading {
+  justify-content: flex-start;
+}
+
+.kpiIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: var(--card-tint);
+  color: var(--card-accent);
+}
+
+.kpiIcon {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .kpiLabel {
-  color: #66716d;
+  font-size: 0.85rem;
+  color: #5e6763;
+  font-weight: 600;
 }
 
 .deltaPositive,
 .deltaNegative {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--ess-spacing-100) var(--ess-spacing-200);
-  border-radius: var(--ess-border-radius-round);
-  font-size: var(--ess-font-size-small);
-  font-weight: var(--ess-font-weight-semibold);
+  gap: 0.25rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .deltaPositive {
@@ -157,315 +188,510 @@
 
 .deltaNegative {
   background: #fbe5e1;
-  color: #9c3426;
+  color: #a63a2b;
+}
+
+.arrow,
+.chevron,
+.chevronOpen {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
 }
 
 .kpiValue {
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
-  font-weight: var(--ess-font-weight-bold);
+  font-size: clamp(2rem, 5vw, 2.8rem);
   line-height: 1;
-  color: var(--ess-color-neutral-fg-strong);
-}
-
-.kpiUnit {
-  font-size: var(--ess-font-size-small);
-  font-weight: var(--ess-font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #6a7471;
-}
-
-.heroPanel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: var(--ess-spacing-500);
-  padding: var(--ess-spacing-700);
-  border-radius: calc(var(--ess-border-radius-large) + var(--ess-spacing-100));
-  background: linear-gradient(135deg, #16312c 0%, var(--ess-color-primary-bg) 100%);
-  box-shadow: 0 18px 44px rgba(15, 39, 34, 0.2);
-}
-
-.heroPanelMain {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-300);
-}
-
-.panelKicker {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.panelTitle {
-  margin: 0;
-  max-width: 18ch;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--ess-font-weight-bold);
-  line-height: 1.04;
+  font-weight: 700;
   letter-spacing: -0.04em;
-  color: var(--ess-color-primary-text);
+  font-variant-numeric: tabular-nums;
 }
 
-.panelBody {
-  margin: 0;
-  max-width: 40rem;
-  font-size: var(--ess-font-size-large);
-  line-height: var(--ess-font-line-height-body);
-  color: rgba(255, 255, 255, 0.78);
+.kpiFooter {
+  color: #6d7673;
+  font-size: 0.8rem;
 }
 
-.heroMeta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--ess-spacing-300);
-  align-content: start;
-}
-
-.metaBlock {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-200);
-  padding: var(--ess-spacing-450);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--ess-border-radius-large);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-.metaLabel {
-  color: rgba(255, 255, 255, 0.64);
-}
-
-.metaNumber {
-  color: var(--ess-color-primary-text);
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-  font-size: var(--ess-font-size-h3);
-  font-weight: var(--ess-font-weight-bold);
-  line-height: 1.1;
-}
-
-.metaNote {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: var(--ess-font-size-medium);
-  line-height: var(--ess-font-line-height-body);
-}
-
-.contentSection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-400);
-}
-
-.sectionHeader {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-200);
-}
-
-.sectionEyebrow {
-  color: var(--ess-color-primary-bg);
-}
-
-.sectionTitle {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: var(--ess-font-size-h1);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--ess-color-neutral-fg-strong);
-}
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: var(--ess-spacing-400);
-}
-
-.contentCard,
-.contentCardWide {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-300);
-  border-color: #e7e1d8;
-  border-radius: var(--ess-border-radius-large);
-  background: rgba(255, 255, 255, 0.86);
-}
-
-.contentCard {
-  grid-column: span 3;
-}
-
-.contentCardWide {
-  grid-column: span 6;
-}
-
-.cardEyebrow {
-  color: var(--ess-color-blue);
-}
-
-.cardTitle {
-  margin: 0;
-  font-size: var(--ess-font-size-h3);
-  font-weight: var(--ess-font-weight-bold);
-  color: var(--ess-color-neutral-fg-strong);
-}
-
-.cardDescription {
-  margin: 0;
-  font-size: var(--ess-font-size-medium);
-  line-height: var(--ess-font-line-height-body);
-  color: #5f6a66;
-}
-
-.chartSkeleton {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  align-items: end;
-  gap: var(--ess-spacing-200);
-  min-height: 15rem;
-  padding-top: var(--ess-spacing-400);
-}
-
-.chartBarTall,
-.chartBarShort,
-.chartBarMid,
-.chartBarPeak {
-  border-radius: var(--ess-border-radius-medium) var(--ess-border-radius-medium) 0 0;
-  background: linear-gradient(180deg, #ea6a4e 0%, #f3b19f 100%);
-}
-
-.chartBarTall {
-  min-height: 10rem;
-}
-
-.chartBarShort {
-  min-height: 6rem;
-  opacity: 0.75;
-}
-
-.chartBarMid {
-  min-height: 8rem;
-  opacity: 0.88;
-}
-
-.chartBarPeak {
-  min-height: 12rem;
-}
-
-.campaignList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-300);
-  padding-top: var(--ess-spacing-300);
-}
-
-.campaignRow {
-  display: flex;
+.kpiChevronWrap {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid #e4ddd3;
+  border-radius: 999px;
+  color: #54605c;
+}
+
+.detailPanel {
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #e5e0d7;
+  border-radius: 1.4rem;
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+}
+
+.detailHero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--ess-spacing-300);
-  padding-bottom: var(--ess-spacing-300);
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, var(--detail-start) 0%, var(--detail-end) 100%);
+}
+
+.detailContent {
+  max-width: 40rem;
+}
+
+.detailPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.detailTitle {
+  margin: 1rem 0 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.detailInsight {
+  margin: 0.85rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+.detailSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.detailCurrentLabel {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.detailValue {
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #fff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.detailGrid,
+.campaignDetailGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 1.5rem;
+  padding: 1.75rem;
+}
+
+.subsectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  color: #65706c;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.trendChart,
+.revenueChart {
+  width: 100%;
+  height: 20rem;
+}
+
+.breakdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.84rem;
+}
+
+.shareTrack {
+  overflow: hidden;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #ece9e2;
+}
+
+.shareFill {
+  height: 100%;
+  border-radius: 999px;
+  background: #1b3a32;
+}
+
+.sectionCard,
+.tableSection {
+  margin-top: 1.5rem;
+  border: 1px solid #e5e0d7;
+  border-radius: 1.1rem;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.sectionCard {
+  padding: 1.75rem;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sectionHead h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.sectionHead p,
+.tableCount,
+.sectionTotal span {
+  margin: 0.25rem 0 0;
+  color: #67706c;
+  font-size: 0.82rem;
+}
+
+.sectionTotal {
+  text-align: right;
+}
+
+.sectionTotal strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tableScroller {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead tr {
+  background: rgba(245, 242, 236, 0.8);
+  border-top: 1px solid #ece5db;
   border-bottom: 1px solid #ece5db;
 }
 
+.table th,
+.table td {
+  padding: 1rem 1.75rem;
+  text-align: left;
+}
+
+.table th {
+  color: #6f7874;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.tableRow,
+.tableRowOpen {
+  cursor: pointer;
+  border-bottom: 1px solid #ece5db;
+}
+
+.tableRowOpen {
+  background: rgba(245, 242, 236, 0.7);
+}
+
+.campaignCell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.campaignNameRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
 .campaignName {
-  margin: 0;
-  font-size: var(--ess-font-size-large);
-  font-weight: var(--ess-font-weight-semibold);
-  color: var(--ess-color-neutral-fg-strong);
+  font-weight: 600;
 }
 
 .campaignChannel {
-  margin-top: var(--ess-spacing-100);
-  color: #66716d;
+  color: #6f7874;
+  font-size: 0.78rem;
 }
 
-.campaignMetric {
-  font-family: "JetBrains Mono", "Fira Code", monospace;
-  font-size: var(--ess-font-size-medium);
-  font-weight: var(--ess-font-weight-semibold);
-  color: var(--ess-color-primary-bg);
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.mixBar {
+.tagCoral {
+  background: #fbe3da;
+  color: #8f2d15;
+}
+
+.tagAmber {
+  background: #f5e3bd;
+  color: #6a4109;
+}
+
+.alignRight {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.performanceCell {
   display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.performanceTrack {
+  flex: 1;
   overflow: hidden;
-  min-height: 1.1rem;
-  margin-top: var(--ess-spacing-300);
-  border-radius: var(--ess-border-radius-round);
-  background: #ebe4da;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #ece9e2;
 }
 
-.mixWeb {
-  width: 60%;
-  background: var(--ess-color-primary-bg);
+.performanceFill {
+  height: 100%;
+  border-radius: 999px;
 }
 
-.mixApp {
-  width: 25%;
-  background: var(--ess-color-blue);
+.performanceLabel {
+  width: 2.2rem;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6f7874;
+  font-variant-numeric: tabular-nums;
 }
 
-.mixStore {
-  width: 15%;
-  background: var(--ess-color-coral);
+.campaignDetailCell {
+  padding: 0 !important;
 }
 
-.mixLegend {
+.campaignDetailWrap {
+  padding: 0.2rem 1.75rem 1.75rem;
+  background: #faf7f1;
+}
+
+.campaignDetailCard {
+  overflow: hidden;
+  border: 1px solid #e5e0d7;
+  border-radius: 1.1rem;
+  background: #fff;
+}
+
+.campaignDetailHeader {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ess-spacing-300);
-  margin-top: var(--ess-spacing-300);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid #ece5db;
 }
 
-.legendItem {
-  font-size: var(--ess-font-size-medium);
-  font-weight: var(--ess-font-weight-semibold);
-  color: #5b6561;
+.detailMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: #6f7874;
 }
 
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
-@media (max-width: 1200px) {
+.statusLive {
+  background: #e4f1e9;
+  color: #1e7d4f;
+}
+
+.statusScheduled {
+  background: #e5eaf4;
+  color: #344a86;
+}
+
+.statusWrapping {
+  background: #fbf0d9;
+  color: #8a5c0f;
+}
+
+.statusPaused {
+  background: #ece9e2;
+  color: #4a5350;
+}
+
+.campaignDetailTitle {
+  margin: 0.8rem 0 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.campaignDetailSummary {
+  margin: 0.6rem 0 0;
+  max-width: 40rem;
+  color: #5e6763;
+  line-height: 1.65;
+}
+
+.campaignStatGrid {
+  display: flex;
+  gap: 1.5rem;
+  text-align: right;
+}
+
+.campaignStatGrid span,
+.metricTile dt {
+  display: block;
+  font-size: 0.72rem;
+  color: #6f7874;
+}
+
+.campaignStatGrid strong,
+.metricTile dd {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.metricTiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+}
+
+.metricTile {
+  border: 1px solid #ece5db;
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  background: rgba(245, 242, 236, 0.65);
+}
+
+.metricTileWide {
+  grid-column: span 2;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  color: #6f7874;
+  font-size: 0.75rem;
+}
+
+.tooltip {
+  border: 1px solid #ece5db;
+  border-radius: 1rem;
+  padding: 0.6rem 0.85rem;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.tooltipLabel {
+  font-size: 0.7rem;
+  color: #6f7874;
+}
+
+.tooltipValue {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1100px) {
+  .kpiGrid,
+  .detailGrid,
+  .campaignDetailGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .kpiGrid,
+  .detailGrid,
+  .campaignDetailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .campaignStatGrid {
+    text-align: left;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding: 2.5rem 1rem;
+  }
+
   .kpiGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .heroPanel {
     grid-template-columns: 1fr;
   }
 
-  .contentCard {
-    grid-column: span 6;
-  }
-}
-
-@media (max-width: 768px) {
-  .page {
-    padding: var(--ess-spacing-500);
+  .table th,
+  .table td {
+    padding: 0.9rem 1rem;
   }
 
-  .heroMeta {
-    grid-template-columns: 1fr;
-  }
-
-  .kpiGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .rangeToggle {
-    width: 100%;
-    justify-content: space-between;
+  .campaignDetailWrap {
+    padding: 0.2rem 1rem 1rem;
   }
 }
