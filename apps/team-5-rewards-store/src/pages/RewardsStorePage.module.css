@@ -166,6 +166,37 @@
   line-height: var(--ess-font-line-height-body);
 }
 
+.definitionList {
+  display: grid;
+  gap: var(--ess-spacing-300);
+  margin: 0;
+}
+
+.definitionRow {
+  display: grid;
+  grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+  gap: var(--ess-spacing-300);
+  align-items: baseline;
+  padding-bottom: var(--ess-spacing-200);
+  border-bottom: var(--ess-border-width-small) solid
+    color-mix(in srgb, var(--rewards-shell-border) 60%, transparent);
+}
+
+.definitionLabel {
+  margin: 0;
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rewards-shell-muted);
+}
+
+.definitionValue {
+  margin: 0;
+  font-size: var(--ess-font-size-large);
+  font-weight: var(--ess-font-weight-medium);
+}
+
 .stack {
   display: grid;
   gap: var(--ess-spacing-300);
@@ -199,15 +230,28 @@
   line-height: var(--ess-font-line-height-body);
 }
 
+.inlineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ess-spacing-200);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--rewards-shell-muted);
+}
+
 .catalogGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--ess-spacing-300);
 }
 
-.catalogCard,
-.catalogCardWide {
-  min-height: 7.5rem;
+.catalogCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-200);
+  min-height: 8rem;
+  padding: var(--ess-spacing-400);
   border-radius: var(--ess-border-radius-medium);
   border: var(--ess-border-width-small) solid color-mix(in srgb, var(--rewards-shell-border) 72%, transparent);
   background:
@@ -215,12 +259,15 @@
     var(--ess-color-neutral-bg);
 }
 
-.catalogCardWide {
-  grid-column: 1 / -1;
-  min-height: 9.5rem;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--rewards-shell-highlight) 72%, white) 0%, transparent 72%),
-    var(--ess-color-neutral-bg);
+.catalogName {
+  font-size: var(--ess-font-size-large);
+  line-height: var(--ess-font-line-height-medium);
+}
+
+.catalogMeta {
+  font-size: var(--ess-font-size-small);
+  color: var(--rewards-shell-muted);
+  text-transform: capitalize;
 }
 
 @media (max-width: 960px) {
@@ -236,5 +283,10 @@
   .catalogRegion {
     grid-column: auto;
     grid-row: auto;
+  }
+
+  .definitionRow,
+  .catalogGrid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

@@ -27,7 +27,7 @@
             "TeamPageLayout"
           ],
           "complexity": "S",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S1.2",
@@ -48,7 +48,7 @@
           ],
           "uiComponents": [],
           "complexity": "M",
-          "status": "backlog"
+          "status": "done"
         },
         {
           "id": "S1.3",
