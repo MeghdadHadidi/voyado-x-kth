@@ -158,18 +158,59 @@
     {
       "id": "team-4",
       "name": "Team 4",
-      "nickname": "",
+      "nickname": "OnTheSpot",
       "module": {
         "route": "/campaigns",
         "package": "@voyado-kth/team-4-campaign-builder",
         "title": "Campaign Builder",
         "description": "Marketing campaign creation, templates, and scheduling"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Jenna",
+          "email": "",
+          "github": "",
+          "role": "product manager",
+          "initials": "JE",
+          "avatarColor": "#791A3F"
+        },
+        {
+          "name": "Sebastian Galinski",
+          "email": "",
+          "github": "",
+          "role": "developer 2",
+          "initials": "SG",
+          "avatarColor": "#8e2a52"
+        },
+        {
+          "name": "Isra Said",
+          "email": "",
+          "github": "",
+          "role": "UX Designer",
+          "initials": "IS",
+          "avatarColor": "#641232"
+        },
+        {
+          "name": "salma",
+          "email": "",
+          "github": "",
+          "role": "developer 1",
+          "initials": "SA",
+          "avatarColor": "#a33d65"
+        },
+        {
+          "name": "Abdullah",
+          "email": "",
+          "github": "",
+          "role": "QA engineer",
+          "initials": "AB",
+          "avatarColor": "#530a28"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "requirements",
         "steps": {
-          "onboarding": "pending",
+          "onboarding": "completed",
           "requirements": "pending",
           "breakdown": "pending",
           "implementation": "pending",
@@ -182,7 +223,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T18:31:55Z"
       }
     },
     {
