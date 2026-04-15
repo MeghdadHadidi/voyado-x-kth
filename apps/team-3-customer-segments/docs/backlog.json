@@ -212,7 +212,7 @@
             "Alert"
           ],
           "complexity": "M",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S4.2",
@@ -241,7 +241,7 @@
             "Alert"
           ],
           "complexity": "L",
-          "status": "review"
+          "status": "done"
         }
       ]
     },
@@ -275,7 +275,7 @@
             "Alert"
           ],
           "complexity": "M",
-          "status": "review"
+          "status": "done"
         },
         {
           "id": "S5.2",
