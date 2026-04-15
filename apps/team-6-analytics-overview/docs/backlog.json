@@ -1,0 +1,214 @@
+{
+  "teamId": "team-6",
+  "createdAt": "2026-04-15T20:54:36+02:00",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder page with a real analytics dashboard scaffold, typed data imports, and the correct module export surface.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create analytics dashboard page scaffold",
+          "description": "Replace the current placeholder usage in the main page with a real dashboard shell inside TeamPageLayout, including a page heading area, top-level sections, and a desktop-first grid structure ready for KPI cards and content cards.",
+          "acceptanceCriteria": [
+            "Index page renders a dashboard scaffold instead of the ComingSoon placeholder",
+            "The page includes a title area and placeholder sections for KPI row and main content",
+            "A desktop-first layout is defined with CSS Modules or existing layout helpers"
+          ],
+          "files": [
+            "src/pages/Index.tsx",
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/pages/AnalyticsOverviewPage.module.css"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout",
+            "PageHeader",
+            "Card"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up typed analytics data imports and view-model helpers",
+          "description": "Import the analytics JSON files, connect them to shared types where available, and create small formatting or sorting helpers for KPI values, revenue labels, campaign ordering, and channel totals.",
+          "acceptanceCriteria": [
+            "KPI, revenue trend, campaign, and channel data are imported from the data folder",
+            "Shared analytics types are used for KPI, trend, and channel data",
+            "Helper logic exists for formatting numbers and sorting campaigns by conversion rate"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/utils/analytics.ts"
+          ],
+          "dataSources": [
+            "data/kpis.json",
+            "data/revenue-trend.json",
+            "data/campaign-performance.json",
+            "data/channel-breakdown.json"
+          ],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports to expose the dashboard page",
+          "description": "Ensure the team module exports the real analytics page entry point and no longer depends on the ComingSoon placeholder as the main experience.",
+          "acceptanceCriteria": [
+            "src/index.ts exports the dashboard page entry cleanly",
+            "The route can render the dashboard through the existing module entry point",
+            "The placeholder page remains optional or removable without affecting the route"
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "KPI and Range Controls",
+      "description": "Build the top-of-page executive summary area with KPI cards and a simplified date range selector.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Render the KPI summary row",
+          "description": "Map the KPI dataset into four KpiCard components with consistent value formatting, trend handling, and spacing that works for executive presentation.",
+          "acceptanceCriteria": [
+            "Four KPI cards are rendered from data/kpis.json",
+            "Value formatting matches SEK, percentages, and whole-number counts",
+            "Trend direction and percentage changes are visible on each card"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/components/KpiSummaryRow.tsx",
+            "src/components/KpiSummaryRow.module.css"
+          ],
+          "dataSources": [
+            "data/kpis.json"
+          ],
+          "uiComponents": [
+            "KpiCard"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S2.2",
+          "title": "Add a simplified date range selector",
+          "description": "Create a visible range control with four options and a default active state for Last 30 days, but keep it as presentational UI state only so the implementation stays honest about current data limitations.",
+          "acceptanceCriteria": [
+            "The selector shows Last 7 days, Last 30 days, Last 90 days, and Last 12 months",
+            "Last 30 days is selected by default",
+            "The selected state is visually clear and does not imply unsupported data switching"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/components/DateRangeSelector.tsx",
+            "src/components/DateRangeSelector.module.css"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "Tabs"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Revenue and Campaign Insights",
+      "description": "Deliver the main supporting analysis sections for the executive dashboard: revenue trend and campaign comparison.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Build the revenue trend bar chart",
+          "description": "Render the monthly revenue series inside a Card using a CSS-only vertical bar chart with proportional heights, clear labels, and a visual highlight for the peak month.",
+          "acceptanceCriteria": [
+            "All monthly revenue points are shown in chronological order",
+            "Bar heights are scaled relative to the maximum value",
+            "The highest-value month is visually highlighted and exact values are available"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/components/RevenueTrendCard.tsx",
+            "src/components/RevenueTrendCard.module.css"
+          ],
+          "dataSources": [
+            "data/revenue-trend.json"
+          ],
+          "uiComponents": [
+            "Card"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.2",
+          "title": "Create the campaign performance table",
+          "description": "Render campaign data inside a Card as a comparison table with channel badges, one-decimal percentage formatting, inline rate bars, and conversion-rate-first ordering.",
+          "acceptanceCriteria": [
+            "Campaign rows are ordered by conversion rate descending",
+            "The table shows campaign, channel, open rate, click rate, and conversion rate",
+            "Each rate column includes both a formatted percentage and an inline visual bar"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/components/CampaignPerformanceCard.tsx",
+            "src/components/CampaignPerformanceCard.module.css"
+          ],
+          "dataSources": [
+            "data/campaign-performance.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Channel Breakdown Finish",
+      "description": "Add the final nice-to-have section showing the revenue split by channel once MVP stories are complete.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Add the channel revenue breakdown card",
+          "description": "Create a compact channel breakdown section with a visual distribution bar or stacked segments, channel labels, formatted SEK values, and a displayed total revenue summary.",
+          "acceptanceCriteria": [
+            "Web, App, and In-store are rendered with their provided colors",
+            "Each channel shows value and percentage of total revenue",
+            "A total revenue summary is visible in the card"
+          ],
+          "files": [
+            "src/pages/AnalyticsOverviewPage.tsx",
+            "src/components/ChannelBreakdownCard.tsx",
+            "src/components/ChannelBreakdownCard.module.css"
+          ],
+          "dataSources": [
+            "data/channel-breakdown.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    }
+  ]
+}
