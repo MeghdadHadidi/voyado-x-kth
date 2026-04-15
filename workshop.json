@@ -238,10 +238,10 @@
         }
       ],
       "progress": {
-        "currentStep": "requirements",
+        "currentStep": "breakdown",
         "steps": {
           "onboarding": "completed",
-          "requirements": "pending",
+          "requirements": "completed",
           "breakdown": "pending",
           "implementation": "pending",
           "pull-request": "pending",
@@ -253,7 +253,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": "2026-04-15T20:35:52.1551608+02:00"
+        "lastActivity": "2026-04-15T20:39:32.3053012+02:00"
       }
     },
     {
