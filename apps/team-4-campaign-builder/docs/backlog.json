@@ -1,0 +1,308 @@
+{
+  "teamId": "team-4",
+  "createdAt": "2026-04-15T18:48:57Z",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder page with a real Campaign Builder shell, load static data, and wire the Team 4 route to the new page structure.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create the main campaign page layout",
+          "description": "Replace the current Coming Soon experience with a real page-level Campaign Builder layout that includes a heading area, space for campaign list content, and a clear Create Campaign entry point.",
+          "acceptanceCriteria": [
+            "A new page-level Campaign Builder component exists in src/pages and renders inside TeamPageLayout.",
+            "The page includes a title area and a visible Create Campaign action placeholder.",
+            "The route no longer depends on the ComingSoon component for its main UI."
+          ],
+          "files": [
+            "src/pages/CampaignBuilderPage.tsx",
+            "src/pages/CampaignBuilderPage.module.css",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout",
+            "PageHeader",
+            "Button",
+            "Card"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up data loading and type imports",
+          "description": "Import campaign and template data from the local data folder, define any safe view-model helpers needed for the mismatched JSON shape, and connect shared Campaign and CampaignTemplate types so the page can render typed data.",
+          "acceptanceCriteria": [
+            "Campaigns and templates are imported from data/*.json.",
+            "Shared types from @voyado-kth/shared are used for campaign-related logic.",
+            "Any JSON shape mismatch is handled in a local helper or normalization layer without hardcoding data."
+          ],
+          "files": [
+            "src/pages/CampaignBuilderPage.tsx",
+            "src/types/campaignBuilder.ts"
+          ],
+          "dataSources": [
+            "data/campaigns.json",
+            "data/templates.json"
+          ],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "backlog"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports to use the new page",
+          "description": "Ensure the Team 4 package exports the active page components needed by the shell and stops advertising the placeholder as the primary experience.",
+          "acceptanceCriteria": [
+            "src/index.ts exports the live page component used by the shell.",
+            "Index.tsx renders the new Campaign Builder page.",
+            "The module entry stays compatible with the existing shell route."
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/Index.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "Campaign List Experience",
+      "description": "Build the marketer’s overview of existing campaigns with the right emphasis on status, schedule, and segment context.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Render campaign overview cards from static data",
+          "description": "Create a reusable list section that maps existing campaigns into cards showing campaign name, channel, status, scheduled date, and segment name.",
+          "acceptanceCriteria": [
+            "All campaigns from data/campaigns.json are displayed on the page.",
+            "Each card shows name, channel, status, scheduled date, and segment name.",
+            "The visual layout is scan-friendly on desktop."
+          ],
+          "files": [
+            "src/components/CampaignList.tsx",
+            "src/components/CampaignList.module.css",
+            "src/components/CampaignCard.tsx",
+            "src/components/CampaignCard.module.css",
+            "src/pages/CampaignBuilderPage.tsx"
+          ],
+          "dataSources": [
+            "data/campaigns.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Chip"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S2.2",
+          "title": "Add campaign sorting and formatted metadata",
+          "description": "Add helper formatting for schedule dates and channel labels, map status to badge variants, and sort campaigns so upcoming scheduled work is easy to spot.",
+          "acceptanceCriteria": [
+            "Scheduled date values are formatted into a readable date-time string.",
+            "Campaign status uses the correct Badge variants.",
+            "Campaign ordering prioritizes upcoming scheduled items ahead of older sent items."
+          ],
+          "files": [
+            "src/components/CampaignList.tsx",
+            "src/components/CampaignCard.tsx",
+            "src/utils/campaignFormatters.ts"
+          ],
+          "dataSources": [
+            "data/campaigns.json"
+          ],
+          "uiComponents": [
+            "Badge",
+            "Chip"
+          ],
+          "complexity": "S",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Campaign Creation Wizard",
+      "description": "Deliver the full MVP campaign-creation flow using a cards-based wizard with next/back navigation and a strong preview step.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Build wizard shell and step navigation",
+          "description": "Create the wizard container, centralize step state, and implement next/back navigation plus a visible step indicator for the four-step flow.",
+          "acceptanceCriteria": [
+            "The page can toggle between campaign list mode and create-campaign wizard mode.",
+            "The wizard tracks four steps with next/back navigation.",
+            "The current step is visually indicated and previous choices remain in state when moving backward."
+          ],
+          "files": [
+            "src/components/CampaignWizard.tsx",
+            "src/components/CampaignWizard.module.css",
+            "src/components/WizardStepIndicator.tsx",
+            "src/components/WizardStepIndicator.module.css",
+            "src/pages/CampaignBuilderPage.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Button"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.2",
+          "title": "Implement channel and template selection steps",
+          "description": "Create Step 1 and Step 2 using selectable cards for channels and filtered templates, with disabled progression until a valid choice is made.",
+          "acceptanceCriteria": [
+            "Step 1 renders Email, SMS, and Push as selectable cards.",
+            "Step 2 only shows templates whose channel matches the selected channel.",
+            "Selected cards have a clear active state and enable progression."
+          ],
+          "files": [
+            "src/components/wizard/ChannelStep.tsx",
+            "src/components/wizard/ChannelStep.module.css",
+            "src/components/wizard/TemplateStep.tsx",
+            "src/components/wizard/TemplateStep.module.css",
+            "src/components/CampaignWizard.tsx"
+          ],
+          "dataSources": [
+            "data/templates.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Button",
+            "Badge"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.3",
+          "title": "Implement content editor with split live preview",
+          "description": "Create Step 3 with inputs for campaign name and subject plus a desktop split-view editor that previews merge-tag substitutions using sample data.",
+          "acceptanceCriteria": [
+            "Step 3 includes fields for campaign name, subject, and content body.",
+            "The desktop layout shows editor and preview side by side.",
+            "Supported merge tags are replaced with sample values in the live preview as the user types."
+          ],
+          "files": [
+            "src/components/wizard/ContentStep.tsx",
+            "src/components/wizard/ContentStep.module.css",
+            "src/utils/mergeTagPreview.ts",
+            "src/components/CampaignWizard.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "Input",
+            "Card",
+            "Chip",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S3.4",
+          "title": "Implement review, schedule, and create action",
+          "description": "Create the final wizard step that summarizes the user’s choices, accepts schedule input, and creates a new campaign item shaped like the existing campaigns data so it appears back in the list.",
+          "acceptanceCriteria": [
+            "Step 4 shows a readable summary of channel, template, campaign name, subject, content preview, and schedule.",
+            "The user can enter a schedule value before creating the campaign.",
+            "Submitting the wizard creates a new campaign entry in local UI state and returns to the campaign list."
+          ],
+          "files": [
+            "src/components/wizard/ReviewStep.tsx",
+            "src/components/wizard/ReviewStep.module.css",
+            "src/components/CampaignWizard.tsx",
+            "src/pages/CampaignBuilderPage.tsx"
+          ],
+          "dataSources": [
+            "data/campaigns.json",
+            "data/templates.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Input",
+            "Button",
+            "Badge",
+            "Alert"
+          ],
+          "complexity": "L",
+          "status": "backlog"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Future Campaign Management",
+      "description": "Capture the deferred ideas for drill-down and campaign state changes without blocking the MVP demo path.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Add read-only campaign detail view",
+          "description": "Create a detail view for a selected campaign that surfaces richer metadata and optional rendered content preview for later iteration.",
+          "acceptanceCriteria": [
+            "Selecting a campaign can open a detail surface or dedicated view.",
+            "The view shows core campaign metadata including status, template reference, scheduled date, and segment name.",
+            "A back action returns the user to the main list."
+          ],
+          "files": [
+            "src/components/CampaignDetail.tsx",
+            "src/components/CampaignDetail.module.css",
+            "src/pages/CampaignBuilderPage.tsx"
+          ],
+          "dataSources": [
+            "data/campaigns.json",
+            "data/templates.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Badge",
+            "Button",
+            "Chip"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        },
+        {
+          "id": "S4.2",
+          "title": "Add status transition controls and feedback",
+          "description": "Extend the future detail view with allowed status transitions and a lightweight confirmation message after changes.",
+          "acceptanceCriteria": [
+            "Only valid status actions are shown for the selected campaign status.",
+            "Sent campaigns show no editable status actions.",
+            "A confirmation message is displayed after a successful status change."
+          ],
+          "files": [
+            "src/components/CampaignDetail.tsx",
+            "src/components/CampaignStatusActions.tsx",
+            "src/components/CampaignStatusActions.module.css",
+            "src/utils/campaignStatus.ts"
+          ],
+          "dataSources": [
+            "data/campaigns.json"
+          ],
+          "uiComponents": [
+            "Badge",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "backlog"
+        }
+      ]
+    }
+  ]
+}
