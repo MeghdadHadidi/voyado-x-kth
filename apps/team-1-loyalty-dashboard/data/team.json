@@ -3,38 +3,38 @@
   "members": [
     {
       "id": "member-1",
-      "name": "Astrid Lindqvist",
-      "role": "Product Owner",
-      "initials": "AL",
+      "name": "Sandra K\u00e5hre",
+      "role": "Developer",
+      "initials": "SK",
       "color": "#2d6e6d"
     },
     {
       "id": "member-2",
-      "name": "Erik Johansson",
-      "role": "Tech Lead",
-      "initials": "EJ",
-      "color": "#791A3F"
+      "name": "Elinor Selinder",
+      "role": "Developer",
+      "initials": "ES",
+      "color": "#3a8584"
     },
     {
       "id": "member-3",
-      "name": "Saga Björklund",
-      "role": "Frontend Dev",
-      "initials": "SB",
-      "color": "#4790ff"
+      "name": "Agnes Ng",
+      "role": "Product Manager",
+      "initials": "AN",
+      "color": "#1f5453"
     },
     {
       "id": "member-4",
-      "name": "Nils Bergström",
+      "name": "Lovisa Cond\u00e9",
       "role": "UX Designer",
-      "initials": "NB",
-      "color": "#43a584"
+      "initials": "LC",
+      "color": "#48a09f"
     },
     {
       "id": "member-5",
-      "name": "Freja Sandberg",
+      "name": "Noor Fauad Raheem",
       "role": "QA Engineer",
-      "initials": "FS",
-      "color": "#7b61ff"
+      "initials": "NR",
+      "color": "#165b5a"
     }
   ]
 }
