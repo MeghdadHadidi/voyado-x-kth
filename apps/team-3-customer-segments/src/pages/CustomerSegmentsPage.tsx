@@ -3,7 +3,9 @@ import type { Customer, Segment, SegmentRule } from '@voyado-kth/shared';
 import { Alert, Badge, Button, Card, Flex, Grid, PageHeader } from '@voyado-kth/ui';
 import { RuleBuilder, type DraftRule } from '../components/RuleBuilder';
 import { SegmentCreateForm, type SegmentDraftValues } from '../components/SegmentCreateForm';
+import { SegmentPreview } from '../components/SegmentPreview';
 import { getDefaultOperator } from '../lib/ruleBuilderOptions';
+import { formatHistoricalRuleLabel, getMatchingDraftCustomers } from '../lib/segmentMatching';
 import customersData from '../../data/customers.json';
 import segmentsData from '../../data/segments.json';
 import teamData from '../../data/team.json';
@@ -25,8 +27,6 @@ const segments = [...(segmentsData as DemoSegment[])].sort(
 
 const customers = customersData as Customer[];
 
-const today = new Date();
-
 function formatDate(value: string) {
   const date = new Date(value);
 
@@ -41,119 +41,40 @@ function formatDate(value: string) {
   }).format(date);
 }
 
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat('en-SE', {
-    style: 'currency',
-    currency: 'SEK',
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-function getCustomerValue(customer: Customer, field: string): string | number | boolean | undefined {
-  const record = customer as unknown as Record<string, unknown>;
-  const value = record[field];
-
-  if (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    typeof value === 'boolean' ||
-    typeof value === 'undefined'
-  ) {
-    return value;
-  }
-
-  return undefined;
-}
-
-function getDaysDifference(value: string) {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return Number.NaN;
-  }
-
-  const difference = today.getTime() - date.getTime();
-  return Math.floor(difference / (1000 * 60 * 60 * 24));
-}
-
 function matchesRule(customer: Customer, rule: DemoRule) {
-  const actualValue = getCustomerValue(customer, rule.field);
+  const actualValue = customer as unknown;
+  const record = actualValue as Record<string, unknown>;
   const normalizedRuleValue = String(rule.value).trim();
 
-  switch (rule.operator) {
-    case 'equals':
-      return String(actualValue).toLowerCase() === normalizedRuleValue.toLowerCase();
-    case 'not_equals':
-      return String(actualValue).toLowerCase() !== normalizedRuleValue.toLowerCase();
-    case 'greater_than':
-      return Number(actualValue) > Number(normalizedRuleValue);
-    case 'less_than':
-      return Number(actualValue) < Number(normalizedRuleValue);
-    case 'contains':
-      return String(actualValue).toLowerCase().includes(normalizedRuleValue.toLowerCase());
-    case 'in':
-      return normalizedRuleValue
-        .split(',')
-        .map((entry) => entry.trim().toLowerCase())
-        .includes(String(actualValue).toLowerCase());
-    case 'older_than_days': {
-      const difference = getDaysDifference(String(actualValue));
-      return !Number.isNaN(difference) && difference > Number(normalizedRuleValue);
-    }
-    case 'within_days': {
-      const difference = getDaysDifference(String(actualValue));
-      return !Number.isNaN(difference) && difference <= Number(normalizedRuleValue);
-    }
-    default:
-      return false;
+  if (rule.operator === 'in') {
+    return normalizedRuleValue
+      .split(',')
+      .map((entry) => entry.trim().toLowerCase())
+      .includes(String(record[rule.field]).toLowerCase());
   }
+
+  if (rule.operator === 'older_than_days' || rule.operator === 'within_days') {
+    const date = new Date(String(record[rule.field]));
+
+    if (Number.isNaN(date.getTime())) {
+      return false;
+    }
+
+    const difference = Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24));
+    return rule.operator === 'older_than_days'
+      ? difference > Number(normalizedRuleValue)
+      : difference <= Number(normalizedRuleValue);
+  }
+
+  return getMatchingDraftCustomers([customer], [{ ...rule, value: normalizedRuleValue }]).length > 0;
 }
 
 function getMatchingCustomers(segment: DemoSegment) {
   return customers.filter((customer) => segment.rules.every((rule) => matchesRule(customer, rule)));
 }
 
-function getTierVariant(tier: Customer['tier']) {
-  switch (tier) {
-    case 'Gold':
-      return 'warning';
-    case 'Platinum':
-      return 'success';
-    case 'Silver':
-      return 'info';
-    case 'Bronze':
-    default:
-      return 'neutral';
-  }
-}
-
 function getRuleLabel(rule: DemoRule) {
-  const fieldLabels: Record<string, string> = {
-    tier: 'Tier',
-    city: 'City',
-    totalSpend: 'Total spend',
-    lastPurchaseDate: 'Last purchase',
-    enrollmentDate: 'Enrollment',
-    isActive: 'Active',
-    pointsBalance: 'Points',
-  };
-
-  const operatorLabels: Record<string, string> = {
-    equals: 'equals',
-    not_equals: 'is not',
-    greater_than: 'above',
-    less_than: 'below',
-    contains: 'contains',
-    in: 'is one of',
-    older_than_days: 'older than',
-    within_days: 'within',
-  };
-
-  if (rule.operator === 'older_than_days' || rule.operator === 'within_days') {
-    return `${fieldLabels[rule.field] ?? rule.field} ${operatorLabels[rule.operator]} ${rule.value} days`;
-  }
-
-  return `${fieldLabels[rule.field] ?? rule.field} ${operatorLabels[rule.operator] ?? rule.operator} ${rule.value}`;
+  return formatHistoricalRuleLabel(rule.field, rule.operator, rule.value);
 }
 
 export function CustomerSegmentsPage() {
@@ -161,6 +82,7 @@ export function CustomerSegmentsPage() {
   const [selectedSegmentId, setSelectedSegmentId] = useState<string>(segments[0]?.id ?? '');
   const [draftValues, setDraftValues] = useState<SegmentDraftValues>({ name: '', description: '' });
   const [nameError, setNameError] = useState<string>('');
+  const [draftPreviewMatches, setDraftPreviewMatches] = useState<Customer[] | null>(null);
   const [draftRules, setDraftRules] = useState<DraftRule[]>([
     {
       id: 'draft-rule-1',
@@ -176,6 +98,7 @@ export function CustomerSegmentsPage() {
   function openCreateView() {
     setActiveView('create');
     setNameError('');
+    setDraftPreviewMatches(null);
   }
 
   function handleDraftChange(field: keyof SegmentDraftValues, value: string) {
@@ -193,6 +116,7 @@ export function CustomerSegmentsPage() {
     setActiveView('detail');
     setDraftValues({ name: '', description: '' });
     setNameError('');
+    setDraftPreviewMatches(null);
     setDraftRules([
       {
         id: 'draft-rule-1',
@@ -211,6 +135,7 @@ export function CustomerSegmentsPage() {
 
     setNameError('');
     setActiveView('builder');
+    setDraftPreviewMatches(null);
   }
 
   function handleAddRule() {
@@ -224,6 +149,7 @@ export function CustomerSegmentsPage() {
         value: '',
       },
     ]);
+    setDraftPreviewMatches(null);
   }
 
   function handleRemoveRule(id: string) {
@@ -234,12 +160,18 @@ export function CustomerSegmentsPage() {
 
       return currentRules.filter((rule) => rule.id !== id);
     });
+    setDraftPreviewMatches(null);
   }
 
   function handleRuleChange(id: string, patch: Partial<DraftRule>) {
     setDraftRules((currentRules) =>
       currentRules.map((rule) => (rule.id === id ? { ...rule, ...patch } : rule)),
     );
+    setDraftPreviewMatches(null);
+  }
+
+  function handlePreview() {
+    setDraftPreviewMatches(getMatchingDraftCustomers(customers, draftRules));
   }
 
   return (
@@ -360,15 +292,21 @@ export function CustomerSegmentsPage() {
               onSubmit={handleCreateSubmit}
             />
           ) : activeView === 'builder' ? (
-            <RuleBuilder
-              segmentName={draftValues.name}
-              segmentDescription={draftValues.description}
-              rules={draftRules}
-              onAddRule={handleAddRule}
-              onRemoveRule={handleRemoveRule}
-              onRuleChange={handleRuleChange}
-              onBack={() => setActiveView('create')}
-            />
+            <>
+              <RuleBuilder
+                segmentName={draftValues.name}
+                segmentDescription={draftValues.description}
+                rules={draftRules}
+                onAddRule={handleAddRule}
+                onRemoveRule={handleRemoveRule}
+                onRuleChange={handleRuleChange}
+                onBack={() => setActiveView('create')}
+                onPreview={handlePreview}
+              />
+              {draftPreviewMatches ? (
+                <SegmentPreview rules={draftRules} matches={draftPreviewMatches} />
+              ) : null}
+            </>
           ) : selectedSegment ? (
             <>
               <div className={styles.panelHeader}>
@@ -427,10 +365,28 @@ export function CustomerSegmentsPage() {
                             <td>{customer.firstName} {customer.lastName}</td>
                             <td>{customer.email}</td>
                             <td>
-                              <Badge variant={getTierVariant(customer.tier)}>{customer.tier}</Badge>
+                              <Badge
+                                variant={
+                                  customer.tier === 'Gold'
+                                    ? 'warning'
+                                    : customer.tier === 'Platinum'
+                                      ? 'success'
+                                      : customer.tier === 'Silver'
+                                        ? 'info'
+                                        : 'neutral'
+                                }
+                              >
+                                {customer.tier}
+                              </Badge>
                             </td>
                             <td>{customer.city}</td>
-                            <td>{formatCurrency(customer.totalSpend)}</td>
+                            <td>
+                              {new Intl.NumberFormat('en-SE', {
+                                style: 'currency',
+                                currency: 'SEK',
+                                maximumFractionDigits: 0,
+                              }).format(customer.totalSpend)}
+                            </td>
                           </tr>
                         ))}
                       </tbody>

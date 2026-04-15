@@ -18,6 +18,7 @@ interface RuleBuilderProps {
   onRemoveRule: (id: string) => void;
   onRuleChange: (id: string, patch: Partial<DraftRule>) => void;
   onBack: () => void;
+  onPreview: () => void;
 }
 
 function getFieldLabel(field: string) {
@@ -63,8 +64,9 @@ export function RuleBuilder({
   onRemoveRule,
   onRuleChange,
   onBack,
+  onPreview,
 }: RuleBuilderProps) {
-  const hasCompleteRule = rules.some((rule) => rule.field && rule.operator && rule.value.trim());
+  const hasCompleteRule = rules.length > 0 && rules.every((rule) => rule.field && rule.operator && rule.value.trim());
 
   return (
     <Card className={styles.card}>
@@ -137,8 +139,8 @@ export function RuleBuilder({
         <Button variant="ghost" onClick={onAddRule}>
           Add rule
         </Button>
-        <Button disabled={!hasCompleteRule}>
-          Preview next
+        <Button disabled={!hasCompleteRule} onClick={onPreview}>
+          Preview
         </Button>
       </div>
     </Card>
