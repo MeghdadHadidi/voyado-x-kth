@@ -1,0 +1,51 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-400);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-200);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-weak);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--ess-font-size-h3);
+  color: var(--ess-color-neutral-fg);
+}
+
+.description {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-weak);
+  font-size: var(--ess-font-size-medium);
+  line-height: var(--ess-font-line-height-body);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-300);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ess-spacing-300);
+}
+
+@media (max-width: 720px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+}

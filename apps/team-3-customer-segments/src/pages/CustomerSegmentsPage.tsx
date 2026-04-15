@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Customer, Segment, SegmentRule } from '@voyado-kth/shared';
 import { Alert, Badge, Button, Card, Flex, Grid, PageHeader } from '@voyado-kth/ui';
+import { SegmentCreateForm, type SegmentDraftValues } from '../components/SegmentCreateForm';
 import customersData from '../../data/customers.json';
 import segmentsData from '../../data/segments.json';
 import teamData from '../../data/team.json';
@@ -154,10 +155,45 @@ function getRuleLabel(rule: DemoRule) {
 }
 
 export function CustomerSegmentsPage() {
+  const [activeView, setActiveView] = useState<'detail' | 'create' | 'builder-preview'>('detail');
   const [selectedSegmentId, setSelectedSegmentId] = useState<string>(segments[0]?.id ?? '');
+  const [draftValues, setDraftValues] = useState<SegmentDraftValues>({ name: '', description: '' });
+  const [nameError, setNameError] = useState<string>('');
 
   const selectedSegment = segments.find((segment) => segment.id === selectedSegmentId) ?? segments[0] ?? null;
   const matchingCustomers = selectedSegment ? getMatchingCustomers(selectedSegment) : [];
+
+  function openCreateView() {
+    setActiveView('create');
+    setNameError('');
+  }
+
+  function handleDraftChange(field: keyof SegmentDraftValues, value: string) {
+    setDraftValues((currentValues) => ({
+      ...currentValues,
+      [field]: value,
+    }));
+
+    if (field === 'name' && value.trim().length >= 3) {
+      setNameError('');
+    }
+  }
+
+  function handleCreateCancel() {
+    setActiveView('detail');
+    setDraftValues({ name: '', description: '' });
+    setNameError('');
+  }
+
+  function handleCreateSubmit() {
+    if (draftValues.name.trim().length < 3) {
+      setNameError('Segment name must be at least 3 characters.');
+      return;
+    }
+
+    setNameError('');
+    setActiveView('builder-preview');
+  }
 
   return (
     <main className={styles.page}>
@@ -170,8 +206,8 @@ export function CustomerSegmentsPage() {
         >
           <Flex gap="var(--ess-spacing-300)" wrap>
             <div className={styles.statusPill}>Demo-ready slice</div>
-            <Button disabled variant="neutral">
-              Create segment next
+            <Button variant="neutral" onClick={openCreateView}>
+              Create segment
             </Button>
           </Flex>
         </PageHeader>
@@ -247,7 +283,10 @@ export function CustomerSegmentsPage() {
                     key={segment.id}
                     type="button"
                     className={styles.segmentButton}
-                    onClick={() => setSelectedSegmentId(segment.id)}
+                    onClick={() => {
+                      setSelectedSegmentId(segment.id);
+                      setActiveView('detail');
+                    }}
                   >
                     <Card className={[styles.segmentCard, isSelected ? styles.segmentCardSelected : ''].join(' ')} hoverable>
                       <div className={styles.segmentCardHeader}>
@@ -265,7 +304,40 @@ export function CustomerSegmentsPage() {
         </section>
 
         <section className={styles.canvasStage} aria-labelledby="canvas-title">
-          {selectedSegment ? (
+          {activeView === 'create' ? (
+            <SegmentCreateForm
+              values={draftValues}
+              nameError={nameError}
+              onChange={handleDraftChange}
+              onCancel={handleCreateCancel}
+              onSubmit={handleCreateSubmit}
+            />
+          ) : activeView === 'builder-preview' ? (
+            <Card className={styles.createPreviewCard}>
+              <div className={styles.panelHeader}>
+                <p className={styles.panelLabel}>Draft segment</p>
+                <h2 id="canvas-title" className={styles.panelTitle}>
+                  {draftValues.name}
+                </h2>
+              </div>
+
+              <p className={styles.builderPreviewText}>
+                The segment basics are saved in local page state and ready for the next story,
+                where rules will be added visually.
+              </p>
+
+              {draftValues.description ? (
+                <p className={styles.builderPreviewDescription}>{draftValues.description}</p>
+              ) : null}
+
+              <div className={styles.previewActions}>
+                <Button variant="neutral" onClick={handleCreateCancel}>
+                  Back to list
+                </Button>
+                <Button disabled>Rule Builder next</Button>
+              </div>
+            </Card>
+          ) : selectedSegment ? (
             <>
               <div className={styles.panelHeader}>
                 <p className={styles.panelLabel}>Selected segment</p>
