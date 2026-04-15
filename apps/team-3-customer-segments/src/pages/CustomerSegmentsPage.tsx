@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import type { Customer, Segment, SegmentRule } from '@voyado-kth/shared';
 import { Alert, Badge, Button, Card, Flex, Grid, PageHeader } from '@voyado-kth/ui';
+import { RuleBuilder, type DraftRule } from '../components/RuleBuilder';
 import { SegmentCreateForm, type SegmentDraftValues } from '../components/SegmentCreateForm';
+import { getDefaultOperator } from '../lib/ruleBuilderOptions';
 import customersData from '../../data/customers.json';
 import segmentsData from '../../data/segments.json';
 import teamData from '../../data/team.json';
@@ -155,10 +157,18 @@ function getRuleLabel(rule: DemoRule) {
 }
 
 export function CustomerSegmentsPage() {
-  const [activeView, setActiveView] = useState<'detail' | 'create' | 'builder-preview'>('detail');
+  const [activeView, setActiveView] = useState<'detail' | 'create' | 'builder'>('detail');
   const [selectedSegmentId, setSelectedSegmentId] = useState<string>(segments[0]?.id ?? '');
   const [draftValues, setDraftValues] = useState<SegmentDraftValues>({ name: '', description: '' });
   const [nameError, setNameError] = useState<string>('');
+  const [draftRules, setDraftRules] = useState<DraftRule[]>([
+    {
+      id: 'draft-rule-1',
+      field: 'tier',
+      operator: getDefaultOperator('tier'),
+      value: '',
+    },
+  ]);
 
   const selectedSegment = segments.find((segment) => segment.id === selectedSegmentId) ?? segments[0] ?? null;
   const matchingCustomers = selectedSegment ? getMatchingCustomers(selectedSegment) : [];
@@ -183,6 +193,14 @@ export function CustomerSegmentsPage() {
     setActiveView('detail');
     setDraftValues({ name: '', description: '' });
     setNameError('');
+    setDraftRules([
+      {
+        id: 'draft-rule-1',
+        field: 'tier',
+        operator: getDefaultOperator('tier'),
+        value: '',
+      },
+    ]);
   }
 
   function handleCreateSubmit() {
@@ -192,7 +210,36 @@ export function CustomerSegmentsPage() {
     }
 
     setNameError('');
-    setActiveView('builder-preview');
+    setActiveView('builder');
+  }
+
+  function handleAddRule() {
+    const nextRuleNumber = draftRules.length + 1;
+    setDraftRules((currentRules) => [
+      ...currentRules,
+      {
+        id: `draft-rule-${nextRuleNumber}`,
+        field: 'tier',
+        operator: getDefaultOperator('tier'),
+        value: '',
+      },
+    ]);
+  }
+
+  function handleRemoveRule(id: string) {
+    setDraftRules((currentRules) => {
+      if (currentRules.length === 1) {
+        return currentRules;
+      }
+
+      return currentRules.filter((rule) => rule.id !== id);
+    });
+  }
+
+  function handleRuleChange(id: string, patch: Partial<DraftRule>) {
+    setDraftRules((currentRules) =>
+      currentRules.map((rule) => (rule.id === id ? { ...rule, ...patch } : rule)),
+    );
   }
 
   return (
@@ -312,31 +359,16 @@ export function CustomerSegmentsPage() {
               onCancel={handleCreateCancel}
               onSubmit={handleCreateSubmit}
             />
-          ) : activeView === 'builder-preview' ? (
-            <Card className={styles.createPreviewCard}>
-              <div className={styles.panelHeader}>
-                <p className={styles.panelLabel}>Draft segment</p>
-                <h2 id="canvas-title" className={styles.panelTitle}>
-                  {draftValues.name}
-                </h2>
-              </div>
-
-              <p className={styles.builderPreviewText}>
-                The segment basics are saved in local page state and ready for the next story,
-                where rules will be added visually.
-              </p>
-
-              {draftValues.description ? (
-                <p className={styles.builderPreviewDescription}>{draftValues.description}</p>
-              ) : null}
-
-              <div className={styles.previewActions}>
-                <Button variant="neutral" onClick={handleCreateCancel}>
-                  Back to list
-                </Button>
-                <Button disabled>Rule Builder next</Button>
-              </div>
-            </Card>
+          ) : activeView === 'builder' ? (
+            <RuleBuilder
+              segmentName={draftValues.name}
+              segmentDescription={draftValues.description}
+              rules={draftRules}
+              onAddRule={handleAddRule}
+              onRemoveRule={handleRemoveRule}
+              onRuleChange={handleRuleChange}
+              onBack={() => setActiveView('create')}
+            />
           ) : selectedSegment ? (
             <>
               <div className={styles.panelHeader}>

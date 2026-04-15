@@ -310,30 +310,6 @@
     linear-gradient(120deg, rgba(254, 250, 230, 0.95), rgba(255, 255, 255, 0.9));
 }
 
-.createPreviewCard {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ess-spacing-400);
-  border: var(--ess-border-width-small) solid rgba(33, 33, 31, 0.08);
-  border-radius: var(--ess-border-radius-medium);
-  background:
-    linear-gradient(135deg, rgba(237, 248, 244, 0.95), rgba(255, 255, 255, 0.92));
-}
-
-.builderPreviewText,
-.builderPreviewDescription {
-  margin: 0;
-  font-size: var(--ess-font-size-medium);
-  line-height: var(--ess-font-line-height-body);
-  color: var(--segment-shell-muted);
-}
-
-.previewActions {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--ess-spacing-300);
-}
-
 .ruleList {
   display: flex;
   flex-wrap: wrap;
@@ -414,9 +390,5 @@
   .previewCard {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .previewActions {
-    flex-direction: column-reverse;
   }
 }
