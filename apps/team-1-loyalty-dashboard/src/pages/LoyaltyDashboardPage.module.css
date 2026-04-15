@@ -82,6 +82,23 @@
   font-weight: var(--ess-font-weight-medium);
 }
 
+.kpiSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ess-spacing-300);
+}
+
+.kpiSectionHeading {
+  margin: 0;
+  color: var(--ess-color-neutral-fg-strong);
+  font-size: var(--ess-font-size-h5);
+  font-weight: var(--ess-font-weight-bold);
+}
+
+.kpiGrid {
+  width: 100%;
+}
+
 .teamCard {
   display: flex;
   flex-direction: column;

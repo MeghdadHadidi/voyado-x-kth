@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
-import { Card, PageHeader } from '@voyado-kth/ui';
+import { Card, Grid, KpiCard, PageHeader } from '@voyado-kth/ui';
 import teamData from '../../data/team.json';
-import { getDashboardSummary } from '../lib/dashboardData';
+import { getDashboardKpis, getDashboardSummary } from '../lib/dashboardData';
 import styles from './LoyaltyDashboardPage.module.css';
 
 const sectionPlaceholders = [
@@ -29,6 +29,7 @@ const sectionPlaceholders = [
 
 export function LoyaltyDashboardPage() {
   const dashboardSummary = getDashboardSummary();
+  const dashboardKpis = getDashboardKpis();
 
   return (
     <main className={styles.page}>
@@ -52,6 +53,31 @@ export function LoyaltyDashboardPage() {
                   </span>
                 ))}
               </div>
+
+              <section className={styles.kpiSection} aria-labelledby="kpi-summary-heading">
+                <h3 id="kpi-summary-heading" className={styles.kpiSectionHeading}>
+                  KPI summary
+                </h3>
+                <Grid
+                  columns="repeat(auto-fit, minmax(220px, 1fr))"
+                  gap="var(--ess-spacing-400)"
+                  className={styles.kpiGrid}
+                >
+                  {dashboardKpis.map(metric => (
+                    <KpiCard
+                      key={metric.label}
+                      label={metric.label}
+                      value={metric.formattedValue}
+                      trend={metric.trend}
+                      trendValue={
+                        metric.trendPercentage === 0
+                          ? '0%'
+                          : `${metric.trend === 'down' ? '-' : '+'}${metric.trendPercentage}%`
+                      }
+                    />
+                  ))}
+                </Grid>
+              </section>
             </div>
           </div>
         </Card>
