@@ -51,7 +51,7 @@
           ],
           "uiComponents": [],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         },
         {
           "id": "S1.3",
@@ -69,7 +69,7 @@
           "dataSources": [],
           "uiComponents": [],
           "complexity": "S",
-          "status": "backlog"
+          "status": "review"
         }
       ]
     },
