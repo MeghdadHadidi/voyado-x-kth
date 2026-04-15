@@ -22,14 +22,8 @@
             "src/pages/LoyaltyDashboardPage.tsx",
             "src/pages/LoyaltyDashboardPage.module.css"
           ],
-          "dataSources": [
-            "data/team.json"
-          ],
-          "uiComponents": [
-            "TeamPageLayout",
-            "PageHeader",
-            "Card"
-          ],
+          "dataSources": ["data/team.json"],
+          "uiComponents": ["TeamPageLayout", "PageHeader", "Card"],
           "complexity": "S",
           "status": "review"
         },
@@ -66,14 +60,9 @@
             "The module route resolves to the dashboard page through Index.tsx.",
             "Unused placeholder-only exports are removed or no longer relied on for the route."
           ],
-          "files": [
-            "src/index.ts",
-            "src/pages/Index.tsx"
-          ],
+          "files": ["src/index.ts", "src/pages/Index.tsx"],
           "dataSources": [],
-          "uiComponents": [
-            "TeamPageLayout"
-          ],
+          "uiComponents": ["TeamPageLayout"],
           "complexity": "S",
           "status": "review"
         }
@@ -97,13 +86,8 @@
             "src/lib/dashboardData.ts",
             "src/lib/dashboardFormatters.ts"
           ],
-          "dataSources": [
-            "data/members.json",
-            "data/enrollment-stats.json"
-          ],
-          "uiComponents": [
-            "KpiCard"
-          ],
+          "dataSources": ["data/members.json", "data/enrollment-stats.json"],
+          "uiComponents": ["KpiCard"],
           "complexity": "M",
           "status": "review"
         },
@@ -120,14 +104,8 @@
             "src/pages/LoyaltyDashboardPage.tsx",
             "src/pages/LoyaltyDashboardPage.module.css"
           ],
-          "dataSources": [
-            "data/members.json",
-            "data/enrollment-stats.json"
-          ],
-          "uiComponents": [
-            "KpiCard",
-            "Grid"
-          ],
+          "dataSources": ["data/members.json", "data/enrollment-stats.json"],
+          "uiComponents": ["KpiCard", "Grid"],
           "complexity": "S",
           "status": "review"
         }
@@ -152,13 +130,8 @@
             "src/components/TierDistributionCard.module.css",
             "src/pages/LoyaltyDashboardPage.tsx"
           ],
-          "dataSources": [
-            "data/tiers.json"
-          ],
-          "uiComponents": [
-            "Card",
-            "Badge"
-          ],
+          "dataSources": ["data/tiers.json"],
+          "uiComponents": ["Card", "Badge"],
           "complexity": "M",
           "status": "backlog"
         }
@@ -182,12 +155,8 @@
             "src/lib/dashboardData.ts",
             "src/lib/dashboardFormatters.ts"
           ],
-          "dataSources": [
-            "data/activity.json"
-          ],
-          "uiComponents": [
-            "Badge"
-          ],
+          "dataSources": ["data/activity.json"],
+          "uiComponents": ["Badge"],
           "complexity": "S",
           "status": "backlog"
         },
@@ -205,13 +174,8 @@
             "src/components/RecentActivityCard.module.css",
             "src/pages/LoyaltyDashboardPage.tsx"
           ],
-          "dataSources": [
-            "data/activity.json"
-          ],
-          "uiComponents": [
-            "Card",
-            "Badge"
-          ],
+          "dataSources": ["data/activity.json"],
+          "uiComponents": ["Card", "Badge"],
           "complexity": "M",
           "status": "backlog"
         }
@@ -236,12 +200,8 @@
             "src/components/EnrollmentTrendCard.module.css",
             "src/pages/LoyaltyDashboardPage.tsx"
           ],
-          "dataSources": [
-            "data/enrollment-stats.json"
-          ],
-          "uiComponents": [
-            "Card"
-          ],
+          "dataSources": ["data/enrollment-stats.json"],
+          "uiComponents": ["Card"],
           "complexity": "M",
           "status": "backlog"
         }
@@ -266,13 +226,8 @@
             "src/components/TopMembersCard.module.css",
             "src/pages/LoyaltyDashboardPage.tsx"
           ],
-          "dataSources": [
-            "data/members.json"
-          ],
-          "uiComponents": [
-            "Card",
-            "Badge"
-          ],
+          "dataSources": ["data/members.json"],
+          "uiComponents": ["Card", "Badge"],
           "complexity": "L",
           "status": "backlog"
         }
