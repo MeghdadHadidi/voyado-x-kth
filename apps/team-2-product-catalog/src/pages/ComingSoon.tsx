@@ -1,6 +1,7 @@
 import { ShoppingBag } from 'lucide-react';
 import styles from './ComingSoon.module.css';
 
+// Legacy placeholder kept locally as a fallback reference, but no longer exported.
 export function ComingSoon() {
   return (
     <div className={styles.emptyState}>

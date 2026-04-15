@@ -1,0 +1,18 @@
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ess-spacing-200);
+}
+
+.filterButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.filterButton:focus-visible {
+  outline: var(--ess-border-width-medium) solid var(--ess-color-primary-bg);
+  outline-offset: var(--ess-size-50);
+  border-radius: var(--ess-border-radius-round);
+}

@@ -105,14 +105,63 @@
         "title": "Product Catalog",
         "description": "Product browsing, filtering, and wishlist management"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Alice Tsoi",
+          "email": "",
+          "github": "",
+          "role": "Product Manager",
+          "initials": "AT",
+          "avatarColor": "#4790ff"
+        },
+        {
+          "name": "Anna Remmare",
+          "email": "",
+          "github": "",
+          "role": "QA",
+          "initials": "AR",
+          "avatarColor": "#5c9fff"
+        },
+        {
+          "name": "Simon Berglund",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "SB",
+          "avatarColor": "#3281f0"
+        },
+        {
+          "name": "Julia Hallberg",
+          "email": "",
+          "github": "",
+          "role": "UX-designer",
+          "initials": "JH",
+          "avatarColor": "#6db0ff"
+        },
+        {
+          "name": "Max Andreasen",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "MA",
+          "avatarColor": "#2872d9"
+        },
+        {
+          "name": "Isabella Gobl",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "IG",
+          "avatarColor": "#4790ff"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "implementation",
         "steps": {
-          "onboarding": "pending",
-          "requirements": "pending",
-          "breakdown": "pending",
-          "implementation": "pending",
+          "onboarding": "completed",
+          "requirements": "completed",
+          "breakdown": "completed",
+          "implementation": "in-progress",
           "pull-request": "pending",
           "review": "pending",
           "merge": "pending",
@@ -122,7 +171,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T20:07:00Z"
       }
     },
     {

@@ -1,0 +1,270 @@
+{
+  "teamId": "team-2",
+  "createdAt": "2026-04-15T18:39:30Z",
+  "prdVersion": "1.0",
+  "epics": [
+    {
+      "id": "E1",
+      "title": "Project Setup",
+      "description": "Replace the placeholder page with a typed catalog page scaffold and shared data wiring.",
+      "stories": [
+        {
+          "id": "S1.1",
+          "title": "Create the product catalog page layout",
+          "description": "Replace the coming-soon view with a dedicated Product Catalog page that renders inside TeamPageLayout and includes a page header plus empty content regions for controls and results.",
+          "acceptanceCriteria": [
+            "A new catalog page component is created under src/pages and rendered from Index.tsx.",
+            "The page shows a Product Catalog title and placeholder regions for controls and the product grid.",
+            "The old ComingSoon content is no longer shown on the /products route."
+          ],
+          "files": [
+            "src/pages/Index.tsx",
+            "src/pages/ProductCatalogPage.tsx",
+            "src/pages/ProductCatalogPage.module.css"
+          ],
+          "dataSources": [],
+          "uiComponents": [
+            "TeamPageLayout",
+            "PageHeader"
+          ],
+          "complexity": "S",
+          "status": "review"
+        },
+        {
+          "id": "S1.2",
+          "title": "Set up typed data imports and catalog state",
+          "description": "Import products and categories from the data folder, type them with Product and ProductCategory, and add the baseline React state needed for category, search, sort, selected product, and wishlist.",
+          "acceptanceCriteria": [
+            "Products and categories are imported from JSON files using shared Product and ProductCategory types.",
+            "Default state exists for active category, search query, sort option, selected product, and wishlist IDs.",
+            "Derived product collections are ready to be rendered by later stories."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx"
+          ],
+          "dataSources": [
+            "data/products.json",
+            "data/categories.json"
+          ],
+          "uiComponents": [],
+          "complexity": "M",
+          "status": "review"
+        },
+        {
+          "id": "S1.3",
+          "title": "Update module exports for the new page entry",
+          "description": "Make sure the team module exports the page components needed by the shell after the placeholder is removed from the main route flow.",
+          "acceptanceCriteria": [
+            "src/index.ts exports remain valid for the shell import path.",
+            "Index continues to be the page entry used by the shell.",
+            "Unused placeholder exports are removed if they are no longer needed."
+          ],
+          "files": [
+            "src/index.ts",
+            "src/pages/ComingSoon.tsx"
+          ],
+          "dataSources": [],
+          "uiComponents": [],
+          "complexity": "S",
+          "status": "review"
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "Catalog Discovery MVP",
+      "description": "Build the visible browsing experience with the product grid, category filters, and live search.",
+      "stories": [
+        {
+          "id": "S2.1",
+          "title": "Render the product grid with card content",
+          "description": "Display all products in a responsive grid using shared Card styling, formatted prices, category chips, rating text, and stock indicators so the catalog becomes browsable.",
+          "acceptanceCriteria": [
+            "All products from data/products.json appear in a responsive card grid.",
+            "Each card shows product name, formatted price, category, rating, and stock state.",
+            "Cards have hoverable styling and a clear clickable surface."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/pages/ProductCatalogPage.module.css",
+            "src/components/ProductCard.tsx",
+            "src/components/ProductCard.module.css"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Chip",
+            "Badge"
+          ],
+          "complexity": "M",
+          "status": "review"
+        },
+        {
+          "id": "S2.2",
+          "title": "Add single-select category filters",
+          "description": "Create the category filter row with an All option and active-state styling, then connect it to the rendered product collection.",
+          "acceptanceCriteria": [
+            "All categories and an All option are rendered as clickable filter controls.",
+            "Only one category can be active at a time.",
+            "The product grid updates immediately when a category is selected."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/pages/ProductCatalogPage.module.css",
+            "src/components/CategoryFilterBar.tsx",
+            "src/components/CategoryFilterBar.module.css"
+          ],
+          "dataSources": [
+            "data/categories.json",
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Chip"
+          ],
+          "complexity": "S",
+          "status": "review"
+        },
+        {
+          "id": "S2.3",
+          "title": "Implement live search with neutral empty state",
+          "description": "Add a search input that filters products by name in real time and show a simple neutral empty state with reset guidance when no matches are found.",
+          "acceptanceCriteria": [
+            "The search input filters by partial, case-insensitive product name matches.",
+            "Search combines correctly with the active category filter.",
+            "A neutral empty state appears when no products match and offers a reset path."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/pages/ProductCatalogPage.module.css",
+            "src/components/CatalogEmptyState.tsx",
+            "src/components/CatalogEmptyState.module.css"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Input",
+            "Alert",
+            "Button"
+          ],
+          "complexity": "S",
+          "status": "review"
+        }
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Quick Actions and Personalization",
+      "description": "Introduce the action-heavy controls that make the catalog feel interactive and personalized.",
+      "stories": [
+        {
+          "id": "S3.1",
+          "title": "Add sort controls for visible products",
+          "description": "Create a sort selector near the search and filters so users can reorder the visible product set by name, price, or rating.",
+          "acceptanceCriteria": [
+            "Sort options include Name A-Z, Price low-high, Price high-low, and Rating highest.",
+            "Name A-Z is selected by default.",
+            "Sorting updates the currently filtered product collection immediately."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/pages/ProductCatalogPage.module.css",
+            "src/components/SortControl.tsx"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Select"
+          ],
+          "complexity": "S",
+          "status": "review"
+        },
+        {
+          "id": "S3.2",
+          "title": "Implement wishlist toggles and count badge",
+          "description": "Add wishlist actions to product cards and show a visible count badge near the catalog header so users can save products while browsing.",
+          "acceptanceCriteria": [
+            "Each product card has a wishlist toggle action with distinct saved and unsaved states.",
+            "Wishlist state is stored in React state using product IDs.",
+            "A wishlist count badge reflects the current number of saved products."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/components/ProductCard.tsx",
+            "src/components/ProductCard.module.css"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Badge",
+            "Button",
+            "PageHeader"
+          ],
+          "complexity": "M",
+          "status": "review"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Product Details",
+      "description": "Extend the catalog with a richer modal view for inspecting product information and mirrored wishlist actions.",
+      "stories": [
+        {
+          "id": "S4.1",
+          "title": "Open a product detail dialog from the grid",
+          "description": "Wire product-card clicks to a Dialog-based detail view that shows the selected product and can be closed without losing filter state.",
+          "acceptanceCriteria": [
+            "Clicking a product card opens a dialog for that product.",
+            "Closing the dialog returns the user to the same filtered and sorted grid state.",
+            "The dialog is keyboard accessible and dismissible."
+          ],
+          "files": [
+            "src/pages/ProductCatalogPage.tsx",
+            "src/components/ProductDetailDialog.tsx",
+            "src/components/ProductDetailDialog.module.css"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Dialog",
+            "Button"
+          ],
+          "complexity": "M",
+          "status": "review"
+        },
+        {
+          "id": "S4.2",
+          "title": "Fill the detail dialog with metadata and wishlist actions",
+          "description": "Complete the dialog content with description, tags, price, rating, stock messaging, and a synced wishlist control so the detail view adds meaningful context.",
+          "acceptanceCriteria": [
+            "The dialog shows product description, category, tags, rating, price, and stock status.",
+            "Out-of-stock products are visually emphasized in the dialog.",
+            "The wishlist action inside the dialog stays in sync with the grid."
+          ],
+          "files": [
+            "src/components/ProductDetailDialog.tsx",
+            "src/components/ProductDetailDialog.module.css"
+          ],
+          "dataSources": [
+            "data/products.json"
+          ],
+          "uiComponents": [
+            "Card",
+            "Chip",
+            "Badge",
+            "Button",
+            "Alert"
+          ],
+          "complexity": "M",
+          "status": "review"
+        }
+      ]
+    }
+  ]
+}

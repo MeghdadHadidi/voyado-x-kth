@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ess-spacing-300);
+  padding: var(--ess-spacing-500);
+  border: var(--ess-border-width-small) solid var(--ess-color-neutral-border);
+  border-radius: var(--ess-border-radius-large);
+  background: linear-gradient(180deg, var(--ess-color-emphasized-bg), var(--ess-color-neutral-bg));
+}
+
+.query {
+  font-weight: var(--ess-font-weight-medium);
+}
