@@ -238,6 +238,14 @@
   line-height: var(--ess-font-line-height-body);
 }
 
+.cardMeta {
+  margin: 0;
+  color: var(--ess-color-blue-strong);
+  font-size: var(--ess-font-size-small);
+  font-weight: var(--ess-font-weight-medium);
+  line-height: var(--ess-font-line-height-medium);
+}
+
 .placeholderBars {
   display: flex;
   flex-direction: column;

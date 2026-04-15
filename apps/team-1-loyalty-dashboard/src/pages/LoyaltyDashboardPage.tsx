@@ -1,5 +1,6 @@
 import { Card, PageHeader } from '@voyado-kth/ui';
 import teamData from '../../data/team.json';
+import { getDashboardSummary } from '../lib/dashboardData';
 import styles from './LoyaltyDashboardPage.module.css';
 
 const sectionPlaceholders = [
@@ -26,6 +27,8 @@ const sectionPlaceholders = [
 ];
 
 export function LoyaltyDashboardPage() {
+  const dashboardSummary = getDashboardSummary();
+
   return (
     <main className={styles.page}>
       <section className={styles.heroSection} aria-labelledby="dashboard-shell-heading">
@@ -42,9 +45,11 @@ export function LoyaltyDashboardPage() {
                 visual foundation for the KPI row, charts, and activity components coming next.
               </p>
               <div className={styles.signalRow} aria-label="Planned dashboard signals">
-                <span className={styles.signalPill}>Scannable overview</span>
-                <span className={styles.signalPill}>Data-focused layout</span>
-                <span className={styles.signalPill}>Essence-ready sections</span>
+                {dashboardSummary.signalPills.map(signal => (
+                  <span key={signal} className={styles.signalPill}>
+                    {signal}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -86,6 +91,7 @@ export function LoyaltyDashboardPage() {
             <p className={styles.cardLabel}>Placeholder</p>
             <h3 className={styles.cardTitle}>{section.title}</h3>
             <p className={styles.cardDescription}>{section.description}</p>
+            <p className={styles.cardMeta}>{dashboardSummary.sectionStats[section.title]}</p>
             <div className={styles.placeholderBars} aria-hidden="true">
               <span className={styles.placeholderBarWide} />
               <span className={styles.placeholderBarMedium} />
