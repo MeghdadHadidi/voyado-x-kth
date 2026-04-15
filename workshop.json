@@ -188,21 +188,62 @@
     {
       "id": "team-5",
       "name": "Team 5",
-      "nickname": "",
+      "nickname": "Big 5",
       "module": {
         "route": "/rewards",
         "package": "@voyado-kth/team-5-rewards-store",
         "title": "Rewards Store",
         "description": "Points redemption and reward catalog management"
       },
-      "members": [],
+      "members": [
+        {
+          "name": "Filippa Ciuk Olsson",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "FO",
+          "avatarColor": "#e8725a"
+        },
+        {
+          "name": "Vanessa Baatarsukh",
+          "email": "",
+          "github": "",
+          "role": "Developer",
+          "initials": "VB",
+          "avatarColor": "#ed886e"
+        },
+        {
+          "name": "Ebba Adolphson",
+          "email": "",
+          "github": "",
+          "role": "UX Designer",
+          "initials": "EA",
+          "avatarColor": "#e35c42"
+        },
+        {
+          "name": "Viggo Halvarsson Skoog",
+          "email": "",
+          "github": "",
+          "role": "Product Manager",
+          "initials": "VS",
+          "avatarColor": "#f09e88"
+        },
+        {
+          "name": "Henning Lundberg",
+          "email": "",
+          "github": "",
+          "role": "QA Engineer",
+          "initials": "HL",
+          "avatarColor": "#d94a30"
+        }
+      ],
       "progress": {
-        "currentStep": "onboarding",
+        "currentStep": "implementation",
         "steps": {
-          "onboarding": "pending",
-          "requirements": "pending",
-          "breakdown": "pending",
-          "implementation": "pending",
+          "onboarding": "completed",
+          "requirements": "completed",
+          "breakdown": "completed",
+          "implementation": "in-progress",
           "pull-request": "pending",
           "review": "pending",
           "merge": "pending",
@@ -212,7 +253,7 @@
         "prUrl": null,
         "prNumber": null,
         "deployedUrl": null,
-        "lastActivity": null
+        "lastActivity": "2026-04-15T20:59:28.5391110+02:00"
       }
     },
     {
